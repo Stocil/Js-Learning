@@ -941,4 +941,38 @@
 //   });
 // }, 2000);
 
-// 10)  -----
+// 10) Ширина скролл бара ----------------------------------------------------------------------
+
+// const div = document.createElement("div");
+// div.style.overflowY = "scroll";
+// div.style.width = "50px";
+// div.style.height = "50px";
+
+// const divStyle = getComputedStyle(div);
+// const border = +divStyle.borderWidth.slice(0, -2);
+
+// document.body.append(div);
+
+// const scrollWidth = div.offsetWidth - (div.clientWidth + border * 2);
+
+// div.remove();
+
+// console.log(scrollWidth);
+
+// 11) Помещение мяча в центр поля---------------------------------------------------------------
+
+// const field = document.body.querySelector("#field");
+// const ball = document.body.querySelector("#ball");
+
+// // ball.style.width = "10px";
+// // ball.style.width = "20px";
+// // ball.style.width = "30px";
+
+// const ballSize = ball.clientWidth;
+// const fieldCenterHeight = field.clientHeight / 2 - ballSize / 2;
+// const fieldCenterWidth = field.clientWidth / 2 - ballSize / 2;
+
+// ball.style.top = `${fieldCenterHeight}px`;
+// ball.style.left = `${fieldCenterWidth}px`;
+
+// console.log(fieldCenterHeight, fieldCenterWidth);

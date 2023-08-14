@@ -21,6 +21,12 @@ img {
   max-width: 100%;
 }
 
+body {
+  font-size: 16px;
+}
+
+/* 9) Уведомление в углу страницы */
+
 .notification {
   position: absolute;
   padding: 15px;
@@ -29,3 +35,31 @@ img {
 
   font-size: xx-large;
 }
+
+/* 10) Ширина скролл бара */
+
+#example {
+  width: 400px;
+  height: 300px;
+  overflow: auto;
+  border: 25px solid #E8C48F;
+  padding: 20px;
+}
+
+/* 11) Помещение мяча в центр поля  */
+
+#field {
+  margin: 20px auto;
+  width: 200px;
+  border: 10px groove black;
+  background-color: #00FF00;
+  position: relative;
+}
+
+#ball {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+
+/* 12)  */
