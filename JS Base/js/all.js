@@ -1023,7 +1023,7 @@
 
 //   if (position == "top" || position == "bottom") {
 //     if (position == "top") {
-//       elem.style.top = cordPosition - elem.clientHeight + "px";
+//       elem.style.top = cordPosition - elem.offsetHeight + "px";
 //     } else {
 //       elem.style.top = cordPosition + "px";
 //     }
@@ -1033,7 +1033,7 @@
 
 //   if (position == "left" || position == "right") {
 //     if (position == "left") {
-//       elem.style.left = cordPosition - elem.clientWidth + "px";
+//       elem.style.left = cordPosition - elem.offsetWidth + "px";
 //     } else {
 //       elem.style.left = cordPosition + "px";
 //     }
@@ -1059,27 +1059,61 @@
 // showNote(blockquote, "right", "note at the right");
 // showNote(blockquote, "left", "note at the left");
 
-// 14) Позиционирование (2/3) ------------------------------------------------------------------
+// 14) Позиционирование (3/3) ------------------------------------------------------------------
+
+// Учитывает прокрутку
+function getCords(elem) {
+  let newCords = elem.getBoundingClientRect();
+  console.log(scrollY);
+  return {
+    top: newCords.top + scrollY,
+    bottom: newCords.bottom + scrollY,
+    left: newCords.left,
+    right: newCords.right,
+  };
+}
 
 function positionAt(anchor, position, elem) {
-  let cord = anchor.getBoundingClientRect();
-  let cordPosition = cord[position];
+  let cord = getCords(anchor);
+  let cordPosition = position.split("-");
+  let cordPositionMain = cord[cordPosition[0]];
+  let cordPositionSide = cordPosition[1];
 
-  if (position == "top" || position == "bottom") {
-    if (position == "top") {
-      elem.style.top = cordPosition - elem.offsetHeight + "px";
+  if (cordPosition[0] == "top" || cordPosition[0] == "bottom") {
+    if (cordPosition[0] == "top") {
+      elem.style.top = cordPositionMain + "px";
+
+      if (cordPositionSide == "out") {
+        elem.style.top =
+          +getComputedStyle(elem).top.slice(0, -2) - elem.offsetHeight + "px";
+      }
     } else {
-      elem.style.top = cordPosition + "px";
+      elem.style.top = cordPositionMain + "px";
+
+      if (cordPositionSide == "in") {
+        elem.style.top =
+          +getComputedStyle(elem).top.slice(0, -2) - elem.offsetHeight + "px";
+      }
     }
 
     elem.style.left = cord.left + "px";
   }
 
-  if (position == "left" || position == "right") {
-    if (position == "left") {
-      elem.style.left = cordPosition - elem.offsetWidth + "px";
+  if (cordPosition[0] == "left" || cordPosition[0] == "right") {
+    if (cordPosition[0] == "left") {
+      elem.style.left = cordPositionMain + "px";
+
+      if (cordPositionSide == "out") {
+        elem.style.left =
+          +getComputedStyle(elem).left.slice(0, -2) - elem.offsetWidth + "px";
+      }
     } else {
-      elem.style.left = cordPosition + "px";
+      elem.style.left = cordPositionMain + "px";
+
+      if (cordPositionSide == "in") {
+        elem.style.left =
+          +getComputedStyle(elem).left.slice(0, -2) - elem.offsetWidth + "px";
+      }
     }
 
     elem.style.top = cord.top + "px";
@@ -1098,7 +1132,14 @@ function showNote(anchor, position, html) {
 // test it
 let blockquote = document.querySelector("blockquote");
 
-showNote(blockquote, "top", "note above");
-showNote(blockquote, "bottom", "note below");
-showNote(blockquote, "right", "note at the right");
-showNote(blockquote, "left", "note at the left");
+showNote(blockquote, "top-out", "note top-out");
+showNote(blockquote, "top-in", "note top-in");
+
+showNote(blockquote, "bottom-out", "note bottom-out");
+showNote(blockquote, "bottom-in", "note bottom-in");
+
+showNote(blockquote, "left-out", "note left-out");
+showNote(blockquote, "left-in", "note left-in");
+
+showNote(blockquote, "right-out", "note right-out");
+showNote(blockquote, "right-in", "note right-in");
