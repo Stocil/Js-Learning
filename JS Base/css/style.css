@@ -48,13 +48,13 @@ body {
 
 /* 11) Помещение мяча в центр поля  */
 
-#field {
+/* #field {
   margin: 20px auto;
   width: 200px;
   border: 10px groove black;
   background-color: #00FF00;
   position: relative;
-}
+} */
 
 #ball {
   position: absolute;
@@ -62,4 +62,34 @@ body {
   height: 40px;
 }
 
-/* 12)  */
+/* 12-15) Нахождение координат */
+
+.note {
+  position: absolute;
+  z-index: 1000;
+  padding: 5px;
+  border: 1px solid black;
+  background: white;
+  text-align: center;
+  font: italic 14px serif;
+}
+
+blockquote {
+
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 16px 0 16px 100px;
+  padding: 0.5em 10px;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  display: inline-block;
+  white-space: pre;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: .1em;
+  margin-right: .25em;
+  vertical-align: -.4em;
+}

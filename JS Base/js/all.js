@@ -976,3 +976,129 @@
 // ball.style.left = `${fieldCenterWidth}px`;
 
 // console.log(fieldCenterHeight, fieldCenterWidth);
+
+// 12) Нахождение координат -------------------------------------------------------------------
+
+// let field = document.body.querySelector("#field");
+// let triangles = document.body.querySelectorAll(".triangle-right");
+// let first;
+// let second;
+// let third;
+// let fourth;
+
+// for (let triangle of triangles) {
+//   let cord = triangle.getBoundingClientRect();
+
+//   if (triangle.innerText == "1") {
+//     first = `1) ${cord.left + triangle.getBoundingClientRect().width}:${
+//       cord.top + triangle.getBoundingClientRect().height / 2
+//     }`;
+//   }
+
+//   if (triangle.innerText == "2") {
+//     second = `2) ${cord.right}:${
+//       cord.bottom - triangle.getBoundingClientRect().height / 2
+//     }`;
+//   }
+
+//   if (triangle.innerText == "3") {
+//     third = `3) ${cord.left + triangle.getBoundingClientRect().width}:${
+//       cord.top + triangle.getBoundingClientRect().height / 2
+//     }`;
+//   }
+
+//   if (triangle.innerText == "4") {
+//     fourth = `4) ${cord.right}:${
+//       cord.bottom - triangle.getBoundingClientRect().height / 2
+//     }`;
+//   }
+// }
+// console.log(first, second, third, fourth);
+
+// 13) Позиционирование (1/3) ------------------------------------------------------------------
+
+// function positionAt(anchor, position, elem) {
+//   let cord = anchor.getBoundingClientRect();
+//   let cordPosition = cord[position];
+
+//   if (position == "top" || position == "bottom") {
+//     if (position == "top") {
+//       elem.style.top = cordPosition - elem.clientHeight + "px";
+//     } else {
+//       elem.style.top = cordPosition + "px";
+//     }
+
+//     elem.style.left = cord.left + "px";
+//   }
+
+//   if (position == "left" || position == "right") {
+//     if (position == "left") {
+//       elem.style.left = cordPosition - elem.clientWidth + "px";
+//     } else {
+//       elem.style.left = cordPosition + "px";
+//     }
+
+//     elem.style.top = cord.top + "px";
+//   }
+// }
+
+// function showNote(anchor, position, html) {
+//   let note = document.createElement("div");
+//   note.className = "note";
+//   note.innerHTML = html;
+//   document.body.append(note);
+
+//   positionAt(anchor, position, note);
+// }
+
+// // test it
+// let blockquote = document.querySelector("blockquote");
+
+// showNote(blockquote, "top", "note above");
+// showNote(blockquote, "bottom", "note below");
+// showNote(blockquote, "right", "note at the right");
+// showNote(blockquote, "left", "note at the left");
+
+// 14) Позиционирование (2/3) ------------------------------------------------------------------
+
+function positionAt(anchor, position, elem) {
+  let cord = anchor.getBoundingClientRect();
+  let cordPosition = cord[position];
+
+  if (position == "top" || position == "bottom") {
+    if (position == "top") {
+      elem.style.top = cordPosition - elem.offsetHeight + "px";
+    } else {
+      elem.style.top = cordPosition + "px";
+    }
+
+    elem.style.left = cord.left + "px";
+  }
+
+  if (position == "left" || position == "right") {
+    if (position == "left") {
+      elem.style.left = cordPosition - elem.offsetWidth + "px";
+    } else {
+      elem.style.left = cordPosition + "px";
+    }
+
+    elem.style.top = cord.top + "px";
+  }
+}
+
+function showNote(anchor, position, html) {
+  let note = document.createElement("div");
+  note.className = "note";
+  note.innerHTML = html;
+  document.body.append(note);
+
+  positionAt(anchor, position, note);
+}
+
+// test it
+let blockquote = document.querySelector("blockquote");
+
+showNote(blockquote, "top", "note above");
+showNote(blockquote, "bottom", "note below");
+showNote(blockquote, "right", "note at the right");
+showNote(blockquote, "left", "note at the left");
