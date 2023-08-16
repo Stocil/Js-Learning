@@ -1061,85 +1061,145 @@
 
 // 14) Позиционирование (3/3) ------------------------------------------------------------------
 
-// Учитывает прокрутку
-function getCords(elem) {
-  let newCords = elem.getBoundingClientRect();
-  console.log(scrollY);
-  return {
-    top: newCords.top + scrollY,
-    bottom: newCords.bottom + scrollY,
-    left: newCords.left,
-    right: newCords.right,
-  };
-}
+// // Учитывает прокрутку
+// function getCords(elem) {
+//   let newCords = elem.getBoundingClientRect();
+//   console.log(scrollY);
+//   return {
+//     top: newCords.top + scrollY,
+//     bottom: newCords.bottom + scrollY,
+//     left: newCords.left,
+//     right: newCords.right,
+//   };
+// }
 
-function positionAt(anchor, position, elem) {
-  let cord = getCords(anchor);
-  let cordPosition = position.split("-");
-  let cordPositionMain = cord[cordPosition[0]];
-  let cordPositionSide = cordPosition[1];
+// function positionAt(anchor, position, elem) {
+//   let cord = getCords(anchor);
+//   let cordPosition = position.split("-");
+//   let cordPositionMain = cord[cordPosition[0]];
+//   let cordPositionSide = cordPosition[1];
 
-  if (cordPosition[0] == "top" || cordPosition[0] == "bottom") {
-    if (cordPosition[0] == "top") {
-      elem.style.top = cordPositionMain + "px";
+//   if (cordPosition[0] == "top" || cordPosition[0] == "bottom") {
+//     if (cordPosition[0] == "top") {
+//       elem.style.top = cordPositionMain + "px";
 
-      if (cordPositionSide == "out") {
-        elem.style.top =
-          +getComputedStyle(elem).top.slice(0, -2) - elem.offsetHeight + "px";
-      }
-    } else {
-      elem.style.top = cordPositionMain + "px";
+//       if (cordPositionSide == "out") {
+//         elem.style.top =
+//           +getComputedStyle(elem).top.slice(0, -2) - elem.offsetHeight + "px";
+//       }
+//     } else {
+//       elem.style.top = cordPositionMain + "px";
 
-      if (cordPositionSide == "in") {
-        elem.style.top =
-          +getComputedStyle(elem).top.slice(0, -2) - elem.offsetHeight + "px";
-      }
-    }
+//       if (cordPositionSide == "in") {
+//         elem.style.top =
+//           +getComputedStyle(elem).top.slice(0, -2) - elem.offsetHeight + "px";
+//       }
+//     }
 
-    elem.style.left = cord.left + "px";
-  }
+//     elem.style.left = cord.left + "px";
+//   }
 
-  if (cordPosition[0] == "left" || cordPosition[0] == "right") {
-    if (cordPosition[0] == "left") {
-      elem.style.left = cordPositionMain + "px";
+//   if (cordPosition[0] == "left" || cordPosition[0] == "right") {
+//     if (cordPosition[0] == "left") {
+//       elem.style.left = cordPositionMain + "px";
 
-      if (cordPositionSide == "out") {
-        elem.style.left =
-          +getComputedStyle(elem).left.slice(0, -2) - elem.offsetWidth + "px";
-      }
-    } else {
-      elem.style.left = cordPositionMain + "px";
+//       if (cordPositionSide == "out") {
+//         elem.style.left =
+//           +getComputedStyle(elem).left.slice(0, -2) - elem.offsetWidth + "px";
+//       }
+//     } else {
+//       elem.style.left = cordPositionMain + "px";
 
-      if (cordPositionSide == "in") {
-        elem.style.left =
-          +getComputedStyle(elem).left.slice(0, -2) - elem.offsetWidth + "px";
-      }
-    }
+//       if (cordPositionSide == "in") {
+//         elem.style.left =
+//           +getComputedStyle(elem).left.slice(0, -2) - elem.offsetWidth + "px";
+//       }
+//     }
 
-    elem.style.top = cord.top + "px";
-  }
-}
+//     elem.style.top = cord.top + "px";
+//   }
+// }
 
-function showNote(anchor, position, html) {
-  let note = document.createElement("div");
-  note.className = "note";
-  note.innerHTML = html;
-  document.body.append(note);
+// function showNote(anchor, position, html) {
+//   let note = document.createElement("div");
+//   note.className = "note";
+//   note.innerHTML = html;
+//   document.body.append(note);
 
-  positionAt(anchor, position, note);
-}
+//   positionAt(anchor, position, note);
+// }
 
-// test it
-let blockquote = document.querySelector("blockquote");
+// // test it
+// let blockquote = document.querySelector("blockquote");
 
-showNote(blockquote, "top-out", "note top-out");
-showNote(blockquote, "top-in", "note top-in");
+// showNote(blockquote, "top-out", "note top-out");
+// showNote(blockquote, "top-in", "note top-in");
 
-showNote(blockquote, "bottom-out", "note bottom-out");
-showNote(blockquote, "bottom-in", "note bottom-in");
+// showNote(blockquote, "bottom-out", "note bottom-out");
+// showNote(blockquote, "bottom-in", "note bottom-in");
 
-showNote(blockquote, "left-out", "note left-out");
-showNote(blockquote, "left-in", "note left-in");
+// showNote(blockquote, "left-out", "note left-out");
+// showNote(blockquote, "left-in", "note left-in");
 
-showNote(blockquote, "right-out", "note right-out");
-showNote(blockquote, "right-in", "note right-in");
+// showNote(blockquote, "right-out", "note right-out");
+// showNote(blockquote, "right-in", "note right-in");
+
+// Браузерные события -------------------------------------------------------------------------
+
+// 15) Перемещение объекта в место клика ------------------------------------------------------
+
+// let ball = document.body.querySelector("#ball");
+// let field = document.body.querySelector("#field");
+// let cordText = document.body.querySelector(".coordinate__text");
+
+// // Будущие координаты курсора
+// let cordX;
+// let cordY;
+
+// field.addEventListener("click", getСoordinates);
+// field.addEventListener("click", TranslateBall);
+
+// function getСoordinates(event) {
+//   let _border = +getComputedStyle(field).borderWidth.slice(0, -2);
+//   let _left = Math.round(field.getBoundingClientRect().left + _border);
+//   let _top = Math.round(field.getBoundingClientRect().top + _border);
+
+//   // Координаты с учетом пространства слева или сверху + рамок
+//   cordX = event.clientX - _left;
+//   cordY = event.clientY - _top;
+
+//   cordText.innerText = `${cordX}:${cordY}`;
+// }
+
+// function TranslateBall() {
+//   // Ширина и длина поля
+//   let rightMax = field.clientWidth;
+//   let bottomMax = field.clientHeight;
+
+//   // Присваиваем центру мячу координаты, равные месту клика
+//   let ballX = cordX - ball.clientWidth / 2;
+//   let ballY = cordY - ball.clientHeight / 2;
+
+//   // Проверки на границы
+//   if (cordX <= ball.clientWidth / 2) {
+//     ballX = 0;
+//   }
+
+//   if (cordX >= rightMax - ball.clientWidth / 2) {
+//     ballX = rightMax - ball.clientWidth;
+//   }
+
+//   if (cordY <= ball.clientHeight / 2) {
+//     ballY = 0;
+//   }
+
+//   if (cordY >= bottomMax - ball.clientWidth / 2) {
+//     ballY = bottomMax - ball.clientHeight;
+//   }
+
+//   // Финальное присваивание
+//   ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
+//   console.log(ballX, ballY);
+// }
+
+// 16) Выдвижной список ----------------------------------------------------------------------

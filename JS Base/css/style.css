@@ -56,15 +56,15 @@ body {
   position: relative;
 } */
 
-#ball {
+/* #ball {
   position: absolute;
   width: 40px;
   height: 40px;
-}
+} */
 
 /* 12-15) Нахождение координат */
 
-.note {
+/* .note {
   position: absolute;
   z-index: 1000;
   padding: 5px;
@@ -92,4 +92,32 @@ blockquote:before {
   line-height: 0.1em;
   margin-right: 0.25em;
   vertical-align: -0.4em;
+} */
+
+/* 15) Перемещение объекта в место клика */
+
+/* #field {
+  cursor: pointer;
+  margin: 200px auto;
+  width: 520px;
+  height: 470px;
+  border: 10px solid black;
+  background-color: #00FF00;
+  overflow: hidden;
 }
+
+#ball {
+  position: absolute;
+
+  transition: all 0.7s ease-in-out 0s;
+}
+
+.field__inner {
+  height: 2000px;
+}
+
+.coordinate__text {
+  text-align: center;
+} */
+
+/* 16) Выдвижной список */
