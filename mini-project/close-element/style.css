@@ -49,7 +49,7 @@ body {
 
   position: relative;
 
-  transition: all 0.5s linear 0.3s;
+  transition: all 0.5s linear 0.5s;
 }
 
 .close__button {
@@ -68,23 +68,23 @@ body {
 .horizontal {
   position: absolute;
   content: '';
-  width: 15px;
+  width: 17px;
   height: 4px;
   background-color: rgb(64 58 58);
 
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, width 0.2s ease-in-out 0.3s;
 }
 
 .vertical {
   position: absolute;
   content: '';
-  width: 15px;
-  height: 4px;
+  width: 17px;
+  height: 3px;
   background-color: rgb(64 58 58);
 
   transform: rotate(-90deg);
 
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, width 0.2s ease-in-out 0.3s;
 }
 
 .close {
@@ -96,4 +96,5 @@ body {
 
 .collapsed {
   transform: rotate(315deg);
+  width: 0;
 }
