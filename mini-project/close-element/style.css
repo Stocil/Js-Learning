@@ -1,0 +1,99 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.62;
+  font-size: 18px;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 10px auto;
+  padding: 0 10px;
+}
+
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pane {
+  padding: 10px;
+  max-height: 1000px;
+
+  border-top: 2px solid green;
+  border-radius: 10px;
+  background-color: #c4eb8b;
+
+  position: relative;
+
+  transition: all 0.5s linear 0.3s;
+}
+
+.close__button {
+  border: none;
+  background-color: none;
+  padding: 0;
+  cursor: pointer;
+
+  position: absolute;
+  top: 12%;
+  right: 5%;
+
+  transform: rotate(45deg);
+}
+
+.horizontal {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 4px;
+  background-color: rgb(64 58 58);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.vertical {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 4px;
+  background-color: rgb(64 58 58);
+
+  transform: rotate(-90deg);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.close {
+  max-height: 0px;
+  overflow: hidden;
+  border: none;
+  padding: 0 10px;
+}
+
+.collapsed {
+  transform: rotate(315deg);
+}
