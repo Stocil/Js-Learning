@@ -35,6 +35,12 @@ body {
   cursor: pointer;
 
   font-size: 30px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  transform: scale3d(1.2, 1.2, 1.2);
 }
 
 .container {
@@ -51,6 +57,7 @@ body {
 .slider {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 
   max-width: 500px;
 
