@@ -61,7 +61,8 @@ body {
 
   max-width: 500px;
 
-  background-color: gray;
+  background-color: #edbaef;
+  border-radius: 10px;
 }
 
 .inner__list {
