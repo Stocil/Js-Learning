@@ -3,7 +3,10 @@ const ul = document.body.querySelector("ul");
 ul.addEventListener("click", scroll);
 
 function scroll() {
-  ul.scrollBy(130, 0);
+  console.log(ul.scrollLeft);
+  ul.scrollTo({
+    left: ul.scrollLeft + 130,
+    top: 0,
+    behavior: "smooth",
+  });
 }
-
-console.log(liCount);
