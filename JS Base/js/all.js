@@ -1225,4 +1225,23 @@
 //   element.remove();
 // }
 
-// 17)  -----------------------------
+// 17) Раскрывающееся дерево с помощью делегирования ----------------------------------------
+
+const mainList = document.body.querySelector(".tree");
+
+// Обернуть все li в span
+const allLi = document.body.querySelectorAll("li");
+
+for (let li of allLi) {
+  li.insertAdjacentHTML("beforebegin", "<span>");
+  li.insertAdjacentHTML("afterend", "</span>");
+}
+
+mainList.addEventListener("click", function (event) {
+  const li = event.target;
+  for (let child of li.children) {
+    if (child.tagName == "UL") {
+      child.classList.toggle("hide");
+    }
+  }
+});

@@ -14,7 +14,7 @@ a {
 }
 
 li {
-  list-style: none;
+  /*list-style: none; /*отключить для 17  */
 }
 
 img {
@@ -167,4 +167,12 @@ p {
 } */
 
 
-/* 17)  */
+/* 17) Раскрывающееся дерево с помощью делегирования */
+
+body {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
