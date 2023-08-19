@@ -1202,4 +1202,27 @@
 //   console.log(ballX, ballY);
 // }
 
-// 16) Выдвижной список ---------------------------------------------------------------------
+// 16) Спрятать текст с помощью делегирования ----------------------------------------------
+
+// const inner = document.body.querySelector(".container");
+
+// inner.addEventListener("click", function (event) {
+//   let button;
+//   if (event.target.classList.contains("remove-button")) {
+//     button = event.target;
+//   } else {
+//     return;
+//   }
+
+//   const pane = button.closest(".pane");
+
+//   if (!pane) return;
+
+//   remove(pane);
+// });
+
+// function remove(element) {
+//   element.remove();
+// }
+
+// 17)  -----------------------------
