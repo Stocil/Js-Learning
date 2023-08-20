@@ -1243,38 +1243,4 @@
 //   }
 // });
 
-// 18) Подсказки----------------------------------------------------------------------------
-
-let tip;
-
-document.addEventListener("mouseover", function (event) {
-  if (event.target.tagName == "BUTTON") {
-    if (event.target.dataset.tooltip) {
-      tip = document.createElement("div");
-      const button = event.target;
-      const tipText = event.target.dataset.tooltip;
-
-      tip.classList.add("tooltip");
-      tip.innerHTML = tipText;
-      document.body.append(tip);
-
-      const tipCenter = Math.round((button.offsetWidth - tip.offsetWidth) / 2);
-      console.log(tipCenter);
-
-      tip.style.cssText += `
-        top: ${
-          button.getBoundingClientRect().top - tip.offsetHeight + scrollY - 5
-        }px;
-        left: ${button.getBoundingClientRect().left + scrollX + tipCenter}px;
-      `;
-    }
-  }
-});
-
-document.addEventListener("mouseout", function (event) {
-  if (event.target.tagName == "BUTTON") {
-    if (event.target.dataset.tooltip) {
-      tip.remove();
-    }
-  }
-});
+// 18) ----------------------------------------------------------------------------
