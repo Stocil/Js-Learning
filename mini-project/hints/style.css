@@ -53,6 +53,11 @@ button {
   height: 2000px;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
 .inner {
   padding: 10px;
   margin-top: 500px;
@@ -73,5 +78,5 @@ button {
   background: #6f78e3;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
 
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
 }

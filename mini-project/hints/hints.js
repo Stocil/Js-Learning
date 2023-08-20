@@ -58,10 +58,11 @@ document.addEventListener("mouseout", function (event) {
 function remover() {
   cooldown = true;
 
+  // 0ms чтобы работало нормально
   setTimeout(function () {
     tip.remove();
     cooldown = false;
-  }, 200);
+  }, 100);
 }
 
 document.addEventListener("mouseover", function (event) {
