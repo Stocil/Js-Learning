@@ -1227,18 +1227,54 @@
 
 // 17) Раскрывающееся дерево с помощью делегирования ----------------------------------------
 
-const mainList = document.body.querySelector(".tree");
+// const mainList = document.body.querySelector(".tree");
 
-mainList.addEventListener("click", function (event) {
-  const span = event.target;
+// mainList.addEventListener("click", function (event) {
+//   const span = event.target;
 
-  if (span.tagName == "SPAN") {
-    const li = span.closest("li");
+//   if (span.tagName == "SPAN") {
+//     const li = span.closest("li");
 
-    for (let child of li.children) {
-      if (child.tagName == "UL") {
-        child.classList.toggle("hide");
-      }
+//     for (let child of li.children) {
+//       if (child.tagName == "UL") {
+//         child.classList.toggle("hide");
+//       }
+//     }
+//   }
+// });
+
+// 18) Подсказки----------------------------------------------------------------------------
+
+let tip;
+
+document.addEventListener("mouseover", function (event) {
+  if (event.target.tagName == "BUTTON") {
+    if (event.target.dataset.tooltip) {
+      tip = document.createElement("div");
+      const button = event.target;
+      const tipText = event.target.dataset.tooltip;
+
+      tip.classList.add("tooltip");
+      tip.innerHTML = tipText;
+      document.body.append(tip);
+
+      const tipCenter = Math.round((button.offsetWidth - tip.offsetWidth) / 2);
+      console.log(tipCenter);
+
+      tip.style.cssText += `
+        top: ${
+          button.getBoundingClientRect().top - tip.offsetHeight + scrollY - 5
+        }px;
+        left: ${button.getBoundingClientRect().left + scrollX + tipCenter}px;
+      `;
+    }
+  }
+});
+
+document.addEventListener("mouseout", function (event) {
+  if (event.target.tagName == "BUTTON") {
+    if (event.target.dataset.tooltip) {
+      tip.remove();
     }
   }
 });
