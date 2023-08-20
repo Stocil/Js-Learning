@@ -1229,19 +1229,16 @@
 
 const mainList = document.body.querySelector(".tree");
 
-// Обернуть все li в span
-const allLi = document.body.querySelectorAll("li");
-
-for (let li of allLi) {
-  li.insertAdjacentHTML("beforebegin", "<span>");
-  li.insertAdjacentHTML("afterend", "</span>");
-}
-
 mainList.addEventListener("click", function (event) {
-  const li = event.target;
-  for (let child of li.children) {
-    if (child.tagName == "UL") {
-      child.classList.toggle("hide");
+  const span = event.target;
+
+  if (span.tagName == "SPAN") {
+    const li = span.closest("li");
+
+    for (let child of li.children) {
+      if (child.tagName == "UL") {
+        child.classList.toggle("hide");
+      }
     }
   }
 });
