@@ -66,6 +66,7 @@ body {
 }
 
 .inner__list {
+  padding: 0;
   max-width: 390px;
   overflow-x: hidden;
   white-space: nowrap;
