@@ -1243,4 +1243,32 @@
 //   }
 // });
 
-// 18) ----------------------------------------------------------------------------
+// 18) Поймать переход по ссылке -------------------------------------------------------------
+
+// contents = document.body.querySelector("#contents");
+
+// contents.addEventListener("click", function (event) {
+//   if (event.target.tagName == "A" || event.target.closest("a") != null) {
+//     console.log(event.target.closest("a"));
+
+//     event.preventDefault();
+//     let link;
+
+//     if (event.target.tagName == "A") {
+//       link = event.target;
+//     } else {
+//       link = event.target.closest("a");
+//     }
+
+//     let answer = confirm("Leave for " + link.getAttribute("href") + " ?");
+
+//     if (answer == true) {
+//       // Действие, аналогичное действию ссылки
+//       window.location.href = link.getAttribute("href");
+//     } else {
+//       return;
+//     }
+//   }
+// });
+
+// 19)  -------------------------------------------------------------
