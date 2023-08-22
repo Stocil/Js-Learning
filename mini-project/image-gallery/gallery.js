@@ -8,9 +8,6 @@ thumbs.addEventListener("click", function (event) {
   const image = event.target;
   const imageSrc = image.getAttribute("src");
 
-  // Сделать обмен
-  // image.setAttribute("src", mainImage.getAttribute("src"));
-
   mainImage.setAttribute("src", imageSrc);
 
   image.style.opacity = "0";
@@ -21,10 +18,10 @@ thumbs.addEventListener("click", function (event) {
   }, 300);
 });
 
-const slider = document.body.querySelector(".slider");
-const sliderInner = document.body.querySelector(".slider__inner");
+const bottomSlider = document.body.querySelector(".bottom-slider");
+const bottomSliderInner = document.body.querySelector(".bottom-slider__inner");
 const thumbsLength = document.body.querySelectorAll("li").length;
-const sliderMaxWidth =
+const bottomSliderMaxWidth =
   document.body.querySelector(".thumbs__item").clientWidth * 6 + "px";
 
 const thumbsWidth =
@@ -33,10 +30,10 @@ const thumbsWidth =
 
 let translateX = 0;
 
-sliderInner.style.width = sliderMaxWidth;
+bottomSliderInner.style.width = bottomSliderMaxWidth;
 thumbs.style.width = thumbsWidth;
 
-slider.addEventListener("click", function (event) {
+bottomSlider.addEventListener("click", function (event) {
   if (event.target.tagName != "BUTTON") return;
 
   if (event.target.classList.contains("slider__button-left")) {
@@ -47,7 +44,10 @@ slider.addEventListener("click", function (event) {
     thumbs.style.transform = `translateX(${translateX}px)`;
   } else {
     // Слайдер не выходит за правую границу. Учитывая нынешнюю прокрутку и размер слайдера
-    if (translateX - +sliderMaxWidth.slice(0, -2) <= -+thumbsWidth.slice(0, -2))
+    if (
+      translateX - +bottomSliderMaxWidth.slice(0, -2) <=
+      -+thumbsWidth.slice(0, -2)
+    )
       return;
 
     translateX -= 118;
