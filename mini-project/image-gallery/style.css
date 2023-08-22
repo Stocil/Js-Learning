@@ -141,6 +141,7 @@ body {
 .thumbs {
   display: flex;
 
+  padding: 0;
   margin-top: 20px;
 
   transition: all 0.45s linear
