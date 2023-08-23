@@ -35,6 +35,22 @@ topSlider.addEventListener("click", function (event) {
 
       topSliderTranslateX += 290;
       sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
+
+      // Уход за изображение
+      if (rightSibling.nextElementSibling) {
+        rightSibling.nextElementSibling.style.transform = `translate(${-290}px, ${-20}px)`;
+        rightSibling.nextElementSibling.style.zIndex = `-1`;
+        setTimeout(function () {
+          rightSibling.nextElementSibling.style.opacity = `0`;
+        }, 300);
+        setTimeout(function () {
+          rightSibling.nextElementSibling.style.transform = `translateX(${0}px)`;
+        }, 400);
+        setTimeout(function () {
+          rightSibling.nextElementSibling.style.zIndex = `0`;
+          rightSibling.nextElementSibling.style.opacity = `1`;
+        }, 1000);
+      }
     } else {
       // Правая кнопка
       leftSibling.classList.remove("selected");
@@ -42,6 +58,22 @@ topSlider.addEventListener("click", function (event) {
 
       topSliderTranslateX -= 290;
       sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
+
+      // Уход за изображение
+      if (leftSibling.previousElementSibling) {
+        leftSibling.previousElementSibling.style.transform = `translate(${290}px, ${-20}px)`;
+        leftSibling.previousElementSibling.style.zIndex = `-1`;
+        setTimeout(function () {
+          leftSibling.previousElementSibling.style.opacity = `0`;
+        }, 300);
+        setTimeout(function () {
+          leftSibling.previousElementSibling.style.transform = `translateX(${0}px)`;
+        }, 400);
+        setTimeout(function () {
+          leftSibling.previousElementSibling.style.zIndex = `0`;
+          leftSibling.previousElementSibling.style.opacity = `1`;
+        }, 1000);
+      }
     }
   } else {
     leftSibling.classList.remove("selected");
@@ -49,6 +81,22 @@ topSlider.addEventListener("click", function (event) {
 
     topSliderTranslateX -= 290;
     sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
+
+    // Уход за изображение
+    if (leftSibling.previousElementSibling) {
+      leftSibling.previousElementSibling.style.transform = `translate(${290}px, ${-20}px)`;
+      leftSibling.previousElementSibling.style.zIndex = `-1`;
+      setTimeout(function () {
+        leftSibling.previousElementSibling.style.opacity = `0`;
+      }, 300);
+      setTimeout(function () {
+        leftSibling.previousElementSibling.style.transform = `translateX(${0}px)`;
+      }, 400);
+      setTimeout(function () {
+        leftSibling.previousElementSibling.style.zIndex = `0`;
+        leftSibling.previousElementSibling.style.opacity = `1`;
+      }, 800);
+    }
   }
 });
 

@@ -13,6 +13,10 @@ a {
   text-decoration: none;
 }
 
+ul {
+  padding: 0;
+}
+
 li {
   list-style: none;
 }
@@ -87,6 +91,8 @@ body {
 
   height: 600px;
 
+  /* perspective: 420px; */
+
   /* Scroll */
   transition: transform 1s ease-in-out
 }
@@ -99,6 +105,9 @@ body {
 
   width: 250px;
   height: 250px;
+
+  /* transform: rotateY(130deg) translate(17px, 18px); */
+
   transition: transform 0.4s ease-in-out, width 1s ease-in-out, height 1s ease-in-out;
 }
 
