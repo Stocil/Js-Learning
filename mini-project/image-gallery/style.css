@@ -119,6 +119,7 @@ body {
 .selected {
   width: 500px;
   height: 500px;
+  border-color: #f5d5f3;
 }
 
 /* Bottom */
@@ -169,4 +170,8 @@ body {
   margin-top: 30px;
 
   transition: all 0.7s ease-in-out
+}
+
+.current {
+  border-color: #f5d5f3;
 }

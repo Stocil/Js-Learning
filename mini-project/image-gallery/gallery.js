@@ -1,3 +1,16 @@
+let cooldownTop = false;
+let cooldownBottom = false;
+
+function topCooldownReset(ms) {
+  cooldownTop = true;
+  setTimeout(() => (cooldownTop = false), ms);
+}
+
+function bottomCooldownReset(ms) {
+  cooldownBottom = true;
+  setTimeout(() => (cooldownBottom = false), ms);
+}
+
 const topSlider = document.body.querySelector(".top-slider");
 const sliderUl = topSlider.querySelector(".main-photo");
 const sliderUlLength = sliderUl.querySelectorAll(".main-photo__item").length;
@@ -17,11 +30,15 @@ sliderUl.style.width = sliderUlWidth + "px";
 sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
 
 topSlider.addEventListener("click", function (event) {
+  if (cooldownTop == true) return;
   if (
     event.target.tagName != "IMG" ||
     event.target.closest("li").classList.contains("selected") == true
   )
     return;
+
+  topCooldownReset(750);
+  bottomCooldownReset(800);
 
   const image = event.target;
   const leftSibling = image.closest("li").previousElementSibling;
@@ -34,75 +51,18 @@ topSlider.addEventListener("click", function (event) {
       image.closest("li").classList.add("selected");
 
       ScrollLeft(rightSibling);
-
-      // topSliderTranslateX += 290;
-      // sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
-
-      // Уход за изображение
-      // if (rightSibling.nextElementSibling) {
-      //   rightSibling.nextElementSibling.style.transform = `translate(${-290}px, ${-20}px)`;
-      //   rightSibling.nextElementSibling.style.zIndex = `-1`;
-      //   setTimeout(function () {
-      //     rightSibling.nextElementSibling.style.opacity = `0`;
-      //   }, 300);
-      //   setTimeout(function () {
-      //     rightSibling.nextElementSibling.style.transform = `translateX(${0}px)`;
-      //   }, 400);
-      //   setTimeout(function () {
-      //     rightSibling.nextElementSibling.style.zIndex = `0`;
-      //     rightSibling.nextElementSibling.style.opacity = `1`;
-      //   }, 1000);
-      // }
     } else {
       // Правая кнопка
       leftSibling.classList.remove("selected");
       image.closest("li").classList.add("selected");
 
       ScrollRight(leftSibling);
-
-      // topSliderTranslateX -= 290;
-      // sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
-
-      // Уход за изображение
-      // if (leftSibling.previousElementSibling) {
-      //   leftSibling.previousElementSibling.style.transform = `translate(${290}px, ${-20}px)`;
-      //   leftSibling.previousElementSibling.style.zIndex = `-1`;
-      //   setTimeout(function () {
-      //     leftSibling.previousElementSibling.style.opacity = `0`;
-      //   }, 300);
-      //   setTimeout(function () {
-      //     leftSibling.previousElementSibling.style.transform = `translateX(${0}px)`;
-      //   }, 400);
-      //   setTimeout(function () {
-      //     leftSibling.previousElementSibling.style.zIndex = `0`;
-      //     leftSibling.previousElementSibling.style.opacity = `1`;
-      //   }, 1000);
-      // }
     }
   } else {
     leftSibling.classList.remove("selected");
     image.closest("li").classList.add("selected");
 
     ScrollRight(leftSibling);
-
-    // topSliderTranslateX -= 290;
-    // sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
-
-    // // Уход за изображение
-    // if (leftSibling.previousElementSibling) {
-    //   leftSibling.previousElementSibling.style.transform = `translate(${290}px, ${-20}px)`;
-    //   leftSibling.previousElementSibling.style.zIndex = `-1`;
-    //   setTimeout(function () {
-    //     leftSibling.previousElementSibling.style.opacity = `0`;
-    //   }, 300);
-    //   setTimeout(function () {
-    //     leftSibling.previousElementSibling.style.transform = `translateX(${0}px)`;
-    //   }, 400);
-    //   setTimeout(function () {
-    //     leftSibling.previousElementSibling.style.zIndex = `0`;
-    //     leftSibling.previousElementSibling.style.opacity = `1`;
-    //   }, 1000);
-    // }
   }
 });
 
@@ -148,26 +108,31 @@ bottomSlider.addEventListener("click", function (event) {
 });
 
 thumbs.addEventListener("click", function (event) {
+  if (cooldownBottom == true) return;
   if (event.target.tagName != "IMG") return;
 
   const bottomSelected = event.target.getAttribute("src");
   const topCurrentSelected = topSlider.querySelector(".selected");
   const topSliderImages = topSlider.querySelectorAll("img");
-  let newTopSelected;
 
+  let newTopSelected;
   for (let image of topSliderImages) {
     if (image.getAttribute("src") == bottomSelected) {
       newTopSelected = image.closest("li");
     }
   }
 
+  // Смена цветов рамок
+  const previous = thumbs.querySelector(".current");
+  previous.classList.remove("current");
+  event.target.closest("a").classList.add("current");
+
+  if (newTopSelected == topCurrentSelected) return;
   topCurrentSelected.classList.remove("selected");
-  setTimeout(() => newTopSelected.classList.add("selected"), 900);
 
   let lastTopSelectedPlace;
   let newTopSelectedPlace;
   for (let i = 0; i < topSlider.querySelectorAll("li").length; i++) {
-    // if (topSlider.querySelectorAll("li")[i].classList.contains("selected")) {
     if (topSlider.querySelectorAll("li")[i] == newTopSelected) {
       newTopSelectedPlace = i + 1;
     }
@@ -183,14 +148,22 @@ thumbs.addEventListener("click", function (event) {
     for (let count = 0; count < differenceOfPlace; count++) {
       ScrollRight(topCurrentSelected.nextElementSibling.previousElementSibling);
     }
-    // topSliderTranslateX -= 290 * differenceOfPlace;
-    // sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
   } else if (differenceOfPlace < 0) {
     for (let count = 0; count < -differenceOfPlace; count++) {
       ScrollLeft(topCurrentSelected.previousElementSibling.nextElementSibling);
     }
-    // topSliderTranslateX += 290 * -differenceOfPlace;
-    // sliderUl.style.transform = `translateX(${topSliderTranslateX}px)`;
+  }
+
+  if (differenceOfPlace >= 5 || differenceOfPlace <= -5) {
+    bottomCooldownReset(2000);
+    topCooldownReset(1700);
+
+    setTimeout(() => newTopSelected.classList.add("selected"), 1000);
+  } else {
+    bottomCooldownReset(750);
+    topCooldownReset(850);
+
+    newTopSelected.classList.add("selected");
   }
 });
 
