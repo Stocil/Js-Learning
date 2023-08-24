@@ -11,6 +11,8 @@ function bottomCooldownReset(ms) {
   setTimeout(() => (cooldownBottom = false), ms);
 }
 
+const squares = document.body.querySelector(".squares");
+
 const topSlider = document.body.querySelector(".top-slider");
 const sliderUl = topSlider.querySelector(".main-photo");
 const sliderUlLength = sliderUl.querySelectorAll(".main-photo__item").length;
@@ -67,6 +69,8 @@ topSlider.addEventListener("click", function (event) {
 
   thumbs.querySelector(".current").classList.remove("current");
   const currentSelectedSrc = image.getAttribute("src");
+
+  // Цвета рамки
   for (let img of thumbs.querySelectorAll("img")) {
     if (img.getAttribute("src") == currentSelectedSrc) {
       img.closest("a").classList.add("current");
@@ -173,6 +177,18 @@ thumbs.addEventListener("click", function (event) {
 
     newTopSelected.classList.add("selected");
   }
+
+  const currentSquaresCount =
+    (event.target.closest("li").getBoundingClientRect().left -
+      thumbs.getBoundingClientRect().left) /
+    118;
+
+  squares
+    .querySelector(".squares__current")
+    .classList.remove("squares__current");
+  squares
+    .querySelectorAll(".squares__item")
+    [currentSquaresCount % 6].classList.add("squares__current");
 });
 
 function ScrollLeft(rightSibling) {
@@ -216,3 +232,14 @@ function ScrollRight(leftSibling) {
     }, 1000);
   }
 }
+
+function getCurrentSquaresCount() {
+  return (
+    (thumbs.querySelector(".current").closest("li").getBoundingClientRect()
+      .left -
+      thumbs.getBoundingClientRect().left) /
+    118
+  );
+}
+
+console.log(getCurrentSquaresCount());
