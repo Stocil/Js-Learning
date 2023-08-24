@@ -108,7 +108,7 @@ body {
 
   /* transform: rotateY(130deg) translate(17px, 18px); */
 
-  transition: transform 0.4s ease-in-out, width 1s ease-in-out, height 1s ease-in-out;
+  transition: transform 0.4s ease-in-out, width 1s ease-in-out, height 1s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 .main-photo__item:hover {
@@ -145,6 +145,8 @@ body {
   margin: 5px;
 
   overflow: hidden;
+
+  transition: border-color 0.2s ease-in-out;
 }
 
 .thumbs__item-link:hover {

@@ -64,6 +64,14 @@ topSlider.addEventListener("click", function (event) {
 
     ScrollRight(leftSibling);
   }
+
+  thumbs.querySelector(".current").classList.remove("current");
+  const currentSelectedSrc = image.getAttribute("src");
+  for (let img of thumbs.querySelectorAll("img")) {
+    if (img.getAttribute("src") == currentSelectedSrc) {
+      img.closest("a").classList.add("current");
+    }
+  }
 });
 
 // Нижний слайдер
