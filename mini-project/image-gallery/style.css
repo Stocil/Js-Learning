@@ -106,9 +106,10 @@ body {
   width: 250px;
   height: 250px;
 
+  filter: brightness(40%);
   /* transform: rotateY(130deg) translate(17px, 18px); */
 
-  transition: transform 0.4s ease-in-out, width 1s ease-in-out, height 1s ease-in-out, border-color 0.2s ease-in-out;
+  transition: transform 0.4s ease-in-out, width 1s ease-in-out, height 1s ease-in-out, border-color 0.2s ease-in-out, filter 0.4s ease-in-out;
 }
 
 .main-photo__item:hover {
@@ -120,6 +121,8 @@ body {
   width: 500px;
   height: 500px;
   border-color: #fda8f8;
+
+  filter: brightness(100%);
 }
 
 /* Bottom */
@@ -189,7 +192,7 @@ body {
 
 .squares__item {
   cursor: pointer;
-  padding: 4px 10px;
+  padding: 4px 15px;
 
   border: 2px solid #f5d5f3;
   border-radius: 5px;
@@ -199,4 +202,6 @@ body {
 
 .squares__current {
   background-color: #f5d5f3;
+
+  transition: all 0.4s ease-in-out;
 }

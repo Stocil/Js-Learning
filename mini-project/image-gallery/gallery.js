@@ -11,8 +11,6 @@ function bottomCooldownReset(ms) {
   setTimeout(() => (cooldownBottom = false), ms);
 }
 
-const squares = document.body.querySelector(".squares");
-
 const topSlider = document.body.querySelector(".top-slider");
 const sliderUl = topSlider.querySelector(".main-photo");
 const sliderUlLength = sliderUl.querySelectorAll(".main-photo__item").length;
@@ -76,9 +74,13 @@ topSlider.addEventListener("click", function (event) {
       img.closest("a").classList.add("current");
     }
   }
+
+  // Квадраты
+  setCurrentSquaresCount(translateX);
 });
 
 // Нижний слайдер
+const squares = document.body.querySelector(".squares"); // ------- МБ ПОДНЯТЬ ВЫШЕ ------------
 
 const thumbs = document.body.querySelector(".thumbs");
 const bottomSlider = document.body.querySelector(".bottom-slider");
@@ -90,6 +92,8 @@ const bottomSliderMaxWidth =
 const thumbsWidth =
   document.body.querySelector(".thumbs__item").clientWidth * thumbsLength +
   "px";
+
+let currentSquaresCount = getCurrentSquaresCount(); // ------------МБ УБРАТЬ---------------------
 
 let translateX = 0;
 
@@ -103,9 +107,11 @@ bottomSlider.addEventListener("click", function (event) {
   if (event.target.classList.contains("slider__button-left")) {
     // Слайдер не выходит за левую границу
     if (translateX >= 0) return;
-
     translateX += 118;
     thumbs.style.transform = `translateX(${translateX}px)`;
+
+    // Квадраты
+    setCurrentSquaresCount(translateX);
   } else {
     // Слайдер не выходит за правую границу. Учитывая нынешнюю прокрутку и размер слайдера
     if (
@@ -116,6 +122,9 @@ bottomSlider.addEventListener("click", function (event) {
 
     translateX -= 118;
     thumbs.style.transform = `translateX(${translateX}px)`;
+
+    // Квадраты
+    setCurrentSquaresCount(translateX);
   }
 });
 
@@ -178,17 +187,8 @@ thumbs.addEventListener("click", function (event) {
     newTopSelected.classList.add("selected");
   }
 
-  const currentSquaresCount =
-    (event.target.closest("li").getBoundingClientRect().left -
-      thumbs.getBoundingClientRect().left) /
-    118;
-
-  squares
-    .querySelector(".squares__current")
-    .classList.remove("squares__current");
-  squares
-    .querySelectorAll(".squares__item")
-    [currentSquaresCount % 6].classList.add("squares__current");
+  // Квадраты
+  setCurrentSquaresCount(translateX);
 });
 
 function ScrollLeft(rightSibling) {
@@ -233,13 +233,31 @@ function ScrollRight(leftSibling) {
   }
 }
 
-function getCurrentSquaresCount() {
-  return (
-    (thumbs.querySelector(".current").closest("li").getBoundingClientRect()
-      .left -
+function getCurrentSquaresCount(translateX) {
+  return Math.round(
+    (translateX +
+      thumbs.querySelector(".current").closest("li").getBoundingClientRect()
+        .left -
       thumbs.getBoundingClientRect().left) /
-    118
+      118
   );
 }
 
-console.log(getCurrentSquaresCount());
+function setCurrentSquaresCount(translateX) {
+  currentSquaresCount = getCurrentSquaresCount(translateX);
+
+  if (currentSquaresCount < 0) currentSquaresCount = 0;
+  if (
+    currentSquaresCount >
+    squares.querySelectorAll(".squares__item").length - 1
+  )
+    currentSquaresCount = 5;
+
+  squares
+    .querySelector(".squares__current")
+    .classList.remove("squares__current");
+
+  squares
+    .querySelectorAll(".squares__item")
+    [currentSquaresCount % 6].classList.add("squares__current");
+}
