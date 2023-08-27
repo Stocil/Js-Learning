@@ -1441,13 +1441,6 @@ document.addEventListener("mousedown", function (event) {
       cordY >
       document.documentElement.clientHeight - image.clientHeight
     ) {
-      // if (
-      //   document.documentElement.clientHeight + scrollY <
-      //   document.body.clientHeight
-      // ) {
-      //   scrollTo(0, 10);
-      // }
-
       image.style.top =
         document.documentElement.clientHeight -
         image.clientHeight +
