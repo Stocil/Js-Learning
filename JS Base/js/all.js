@@ -1293,8 +1293,9 @@
 // 20) Улучшенная подсказка ------------------------------------------------------------------
 
 // let tooltip;
+// let inner = document.body.querySelector(".inner");
 
-// document.onmouseover = function (event) {
+// inner.onmouseover = function (event) {
 //   let anchorElem = event.target.closest("[data-tooltip]");
 
 //   if (!anchorElem) return;
@@ -1303,10 +1304,7 @@
 // };
 
 // document.onmouseout = function () {
-//   if (tooltip) {
-//     tooltip.remove();
-//     tooltip = false;
-//   }
+//   tooltip.remove();
 // };
 
 // function showTooltip(anchorElem, html) {
@@ -1330,4 +1328,62 @@
 //   tooltipElem.style.top = top + "px";
 
 //   return tooltipElem;
+// }
+
+// 21) Ползунок ----------------------------------------------------------------------------
+
+// const thumb = document.body.querySelector(".thumb");
+// let shiftX;
+// let shiftY;
+// let move = false;
+
+// thumb.addEventListener("mousedown", function (event) {
+//   move = true;
+//   shiftX = event.clientX - event.target.getBoundingClientRect().left;
+//   shiftY = event.clientY - event.target.getBoundingClientRect().top;
+
+//   thumb.style.position = "absolute";
+
+//   const cordX = event.pageX - shiftX;
+//   const cordY = event.pageY - shiftY;
+//   moveAt(cordX, cordY);
+// });
+
+// thumb.addEventListener("dragstart", function () {
+//   return false;
+// });
+
+// document.addEventListener("mousemove", function (event) {
+//   if (move == false) return;
+
+//   maxLeft = document.body.querySelector(".slider").getBoundingClientRect().left;
+//   maxRight =
+//     document.body.querySelector(".slider").getBoundingClientRect().right -
+//     thumb.offsetWidth;
+
+//   const thumbX = +getComputedStyle(thumb).left.slice(0, -2);
+//   cordX = event.pageX - shiftX;
+
+//   if (cordX > maxLeft && cordX < maxRight) {
+//     moveAt(cordX);
+//   }
+
+//   if (thumbX > maxLeft && thumbX < maxRight) {
+//     moveAt(cordX);
+//   }
+
+//   if (thumbX < maxLeft) {
+//     moveAt(maxLeft);
+//   } else if (thumbX > maxRight) {
+//     moveAt(maxRight);
+//   }
+// });
+
+// document.addEventListener("mouseup", function (event) {
+//   move = false;
+// });
+
+// function moveAt(cordX, cordY) {
+//   thumb.style.top = cordY + "px";
+//   thumb.style.left = cordX + "px";
 // }
