@@ -1387,3 +1387,77 @@
 //   thumb.style.top = cordY + "px";
 //   thumb.style.left = cordX + "px";
 // }
+
+// 21) Drag'n'drop поле --------------------------------------------------------------------
+
+let shiftX;
+let shiftY;
+
+document.addEventListener("mousedown", function (event) {
+  if (!event.target.classList.contains("draggable")) return;
+
+  const image = event.target;
+  shiftX = event.pageX - event.target.getBoundingClientRect().left;
+  shiftY = event.pageY - event.target.getBoundingClientRect().top;
+
+  event.target.style.position = "absolute";
+
+  let cordX = event.pageX - shiftX;
+  let cordY = event.pageY - shiftY;
+
+  moveTo();
+
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
+  image.addEventListener("dragstart", function (event) {
+    event.preventDefault();
+  });
+
+  function onMouseMove(event) {
+    cordX = event.pageX - shiftX;
+    cordY = event.pageY - shiftY;
+
+    moveTo();
+  }
+
+  function onMouseUp() {
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
+  }
+
+  function moveTo() {
+    // console.log(cordX);
+    if (cordX < 0) {
+      image.style.left = 0 + "px";
+    } else if (cordX > document.body.clientWidth - image.clientWidth) {
+      image.style.left = document.body.clientWidth - image.clientWidth + "px";
+    } else {
+      image.style.left = cordX + "px";
+    }
+
+    if (cordY < 0) {
+      image.style.top = 0 + scrollY + "px";
+    } else if (
+      cordY >
+      document.documentElement.clientHeight - image.clientHeight
+    ) {
+      // if (
+      //   document.documentElement.clientHeight + scrollY <
+      //   document.body.clientHeight
+      // ) {
+      //   scrollTo(0, 10);
+      // }
+
+      image.style.top =
+        document.documentElement.clientHeight -
+        image.clientHeight +
+        scrollY +
+        "px";
+    } else {
+      image.style.top = cordY + scrollY + "px";
+    }
+  }
+});
+
+// document.documentElement.clientHeight
+// document.body.clientHeight
