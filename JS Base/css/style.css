@@ -282,14 +282,12 @@ p {
 
 /* 21) Drag'n'drop поле */
 
-#field {
+/* #field {
   background: url(https://js.cx/drag-heroes/field.png);
   width: 800px;
   height: 600px;
   float: left;
 }
-
-/* герои и мяч (переносимые элементы) */
 
 .hero {
   background: url(https://js.cx/drag-heroes/heroes.png);
@@ -324,4 +322,6 @@ p {
 
 .draggable {
   cursor: pointer;
-}
+} */
+
+/* 22) Отследить одновременное нажатие */

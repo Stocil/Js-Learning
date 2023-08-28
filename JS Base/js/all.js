@@ -1390,67 +1390,108 @@
 
 // 21) Drag'n'drop поле --------------------------------------------------------------------
 
-let shiftX;
-let shiftY;
+// let shiftX;
+// let shiftY;
 
-document.addEventListener("mousedown", function (event) {
-  if (!event.target.classList.contains("draggable")) return;
+// document.addEventListener("mousedown", function (event) {
+//   if (!event.target.classList.contains("draggable")) return;
 
-  const image = event.target;
-  shiftX = event.pageX - event.target.getBoundingClientRect().left;
-  shiftY = event.pageY - event.target.getBoundingClientRect().top;
+//   const image = event.target;
+//   shiftX = event.pageX - event.target.getBoundingClientRect().left;
+//   shiftY = event.pageY - event.target.getBoundingClientRect().top;
 
-  event.target.style.position = "absolute";
+//   event.target.style.position = "absolute";
 
-  let cordX = event.pageX - shiftX;
-  let cordY = event.pageY - shiftY;
+//   let cordX = event.pageX - shiftX;
+//   let cordY = event.pageY - shiftY;
 
-  moveTo();
+//   moveTo();
 
-  document.addEventListener("mousemove", onMouseMove);
-  document.addEventListener("mouseup", onMouseUp);
-  image.addEventListener("dragstart", function (event) {
-    event.preventDefault();
-  });
+//   document.addEventListener("mousemove", onMouseMove);
+//   document.addEventListener("mouseup", onMouseUp);
+//   image.addEventListener("dragstart", function (event) {
+//     event.preventDefault();
+//   });
 
-  function onMouseMove(event) {
-    cordX = event.pageX - shiftX;
-    cordY = event.pageY - shiftY;
+//   function onMouseMove(event) {
+//     cordX = event.pageX - shiftX;
+//     cordY = event.pageY - shiftY;
 
-    moveTo();
-  }
+//     moveTo();
+//   }
 
-  function onMouseUp() {
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", onMouseUp);
-  }
+//   function onMouseUp() {
+//     document.removeEventListener("mousemove", onMouseMove);
+//     document.removeEventListener("mouseup", onMouseUp);
+//   }
 
-  function moveTo() {
-    // console.log(cordX);
-    if (cordX < 0) {
-      image.style.left = 0 + "px";
-    } else if (cordX > document.body.clientWidth - image.clientWidth) {
-      image.style.left = document.body.clientWidth - image.clientWidth + "px";
-    } else {
-      image.style.left = cordX + "px";
-    }
+//   function moveTo() {
+//     // console.log(cordX);
+//     if (cordX < 0) {
+//       image.style.left = 0 + "px";
+//     } else if (cordX > document.body.clientWidth - image.clientWidth) {
+//       image.style.left = document.body.clientWidth - image.clientWidth + "px";
+//     } else {
+//       image.style.left = cordX + "px";
+//     }
 
-    if (cordY < 0) {
-      image.style.top = 0 + scrollY + "px";
-    } else if (
-      cordY >
-      document.documentElement.clientHeight - image.clientHeight
-    ) {
-      image.style.top =
-        document.documentElement.clientHeight -
-        image.clientHeight +
-        scrollY +
-        "px";
-    } else {
-      image.style.top = cordY + scrollY + "px";
-    }
-  }
-});
+//     if (cordY < 0) {
+//       image.style.top = 0 + scrollY + "px";
+//     } else if (
+//       cordY >
+//       document.documentElement.clientHeight - image.clientHeight
+//     ) {
+//       image.style.top =
+//         document.documentElement.clientHeight -
+//         image.clientHeight +
+//         scrollY +
+//         "px";
+//     } else {
+//       image.style.top = cordY + scrollY + "px";
+//     }
+//   }
+// });
 
 // document.documentElement.clientHeight
 // document.body.clientHeight
+
+// 22) Отследить одновременное нажатие ----------------------------------------------------
+
+let count = 0;
+let pressed = [];
+
+function runOnKeys(func, ...code_n) {
+  document.addEventListener("keydown", function (event) {
+    console.log(event.code);
+    if (event.repeat == true) return;
+
+    let hasKey = false;
+    for (let code = 0; code < code_n.length; code++) {
+      if (event.code == code_n[code] && pressed.includes(event.code) == false) {
+        pressed.push(event.code);
+        hasKey = true;
+        break;
+      }
+    }
+
+    if (hasKey == true) {
+      count++;
+    } else {
+      count = 0;
+      pressed = [];
+    }
+
+    if (count == code_n.length) {
+      func();
+      pressed = [];
+      count = 0;
+    }
+  });
+
+  document.addEventListener("keyup", function (event) {
+    count = 0;
+    pressed = [];
+  });
+}
+
+runOnKeys(() => alert("Привет!"), "KeyQ", "KeyW");
