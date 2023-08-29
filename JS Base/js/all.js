@@ -1547,4 +1547,33 @@
 //   });
 // }
 
-// 25) -----------------------------------
+// 25) Lazy load --------------------------------------------------------------------------
+
+let imagesTopCord = [];
+const loadingImages = document.body.querySelectorAll("[data-src]");
+document.body
+  .querySelectorAll("[data-src]")
+  .forEach((element) =>
+    imagesTopCord.push(element.getBoundingClientRect().top)
+  );
+let nextImageIndex = 0;
+
+while (
+  scrollY + document.documentElement.clientHeight >=
+  imagesTopCord[nextImageIndex]
+)
+  loadImage();
+
+document.addEventListener("scroll", function (event) {
+  let nextImageTopCord = Math.round(imagesTopCord[nextImageIndex]);
+  const maxViewRange = scrollY + document.documentElement.clientHeight;
+
+  if (maxViewRange >= nextImageTopCord + 100) loadImage();
+});
+
+function loadImage() {
+  const imageSrc = loadingImages[nextImageIndex].dataset.src;
+  loadingImages[nextImageIndex].setAttribute("src", imageSrc);
+  nextImageIndex++;
+  console.log("загрузил");
+}
