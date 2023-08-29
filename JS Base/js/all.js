@@ -1457,41 +1457,94 @@
 
 // 22) Отследить одновременное нажатие ----------------------------------------------------
 
-let count = 0;
-let pressed = [];
+// let count = 0;
+// let pressed = [];
 
-function runOnKeys(func, ...code_n) {
-  document.addEventListener("keydown", function (event) {
-    console.log(event.code);
-    if (event.repeat == true) return;
+// function runOnKeys(func, ...code_n) {
+//   document.addEventListener("keydown", function (event) {
+//     console.log(event.code);
+//     if (event.repeat == true) return;
 
-    let hasKey = false;
-    for (let code = 0; code < code_n.length; code++) {
-      if (event.code == code_n[code] && pressed.includes(event.code) == false) {
-        pressed.push(event.code);
-        hasKey = true;
-        break;
-      }
-    }
+//     let hasKey = false;
+//     for (let code = 0; code < code_n.length; code++) {
+//       if (event.code == code_n[code] && pressed.includes(event.code) == false) {
+//         pressed.push(event.code);
+//         hasKey = true;
+//         break;
+//       }
+//     }
 
-    if (hasKey == true) {
-      count++;
-    } else {
-      count = 0;
-      pressed = [];
-    }
+//     if (hasKey == true) {
+//       count++;
+//     } else {
+//       count = 0;
+//       pressed = [];
+//     }
 
-    if (count == code_n.length) {
-      func();
-      pressed = [];
-      count = 0;
-    }
-  });
+//     if (count == code_n.length) {
+//       func();
+//       pressed = [];
+//       count = 0;
+//     }
+//   });
 
-  document.addEventListener("keyup", function (event) {
-    count = 0;
-    pressed = [];
-  });
-}
+//   document.addEventListener("keyup", function (event) {
+//     count = 0;
+//     pressed = [];
+//   });
+// }
 
-runOnKeys(() => alert("Привет!"), "KeyQ", "KeyW");
+// runOnKeys(() => alert("Привет!"), "KeyQ", "KeyW");
+
+// 23,24) Бесконечная прокрутка и стрелка наверх --------------------------------------------
+
+// let date = new Date();
+// const inner = document.body.querySelector(".inner");
+
+// while (document.body.clientHeight < document.documentElement.clientHeight * 3) {
+//   const div = document.createElement("div");
+//   div.innerText = date;
+//   inner.append(div);
+// }
+
+// document.addEventListener("scroll", function (event) {
+//   console.log(scrollY);
+
+//   if (
+//     document.documentElement.clientHeight + scrollY >
+//     document.body.clientHeight - 100
+//   ) {
+//     date = new Date();
+//     const div = document.createElement("div");
+//     div.innerText = date;
+//     inner.append(div);
+//   }
+
+//   if (scrollY >= document.documentElement.clientHeight) {
+//     if (document.body.querySelector(".arrow")) return;
+
+//     const arrow = document.createElement("div");
+//     const arrowInner = document.createElement("div");
+//     arrow.classList.add("arrow");
+//     arrowInner.classList.add("arrow__inner");
+//     arrowInner.append(arrow);
+//     inner.append(arrowInner);
+
+//     arrowInner.addEventListener("click", scrollToTop);
+//   }
+
+//   if (scrollY < document.documentElement.clientHeight) {
+//     if (!document.body.querySelector(".arrow__inner")) return;
+
+//     document.body.querySelector(".arrow__inner").remove();
+//   }
+// });
+
+// function scrollToTop() {
+//   scrollTo({
+//     top: 0,
+//     behavior: "smooth",
+//   });
+// }
+
+// 25) -----------------------------------

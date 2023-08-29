@@ -324,4 +324,41 @@ p {
   cursor: pointer;
 } */
 
+
 /* 22) Отследить одновременное нажатие */
+
+
+/* 23,24) Бесконечная прокрутка и стрелка наверх*/
+
+/* .arrow__inner {
+  border-radius: 40px;
+  position: fixed;
+  bottom: 13px;
+  right: 33px;
+  width: 70px;
+  height: 70px;
+  display: block;
+  background-color: #eba2a2;
+}
+
+.arrow {
+  width: 35px;
+  height: 35px;
+
+  border-top: 2px solid #000000;
+  border-right: 2px solid #000000;
+
+  margin: 16px 0 0 10px;
+
+  transform: rotate(-45deg);
+
+  display: inline-block;
+
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+
+} */
+
+
+/* 25)  */
