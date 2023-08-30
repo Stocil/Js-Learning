@@ -1549,31 +1549,49 @@
 
 // 25) Lazy load --------------------------------------------------------------------------
 
-let imagesTopCord = [];
-const loadingImages = document.body.querySelectorAll("[data-src]");
-document.body
-  .querySelectorAll("[data-src]")
-  .forEach((element) =>
-    imagesTopCord.push(element.getBoundingClientRect().top)
-  );
-let nextImageIndex = 0;
+// let imagesTopCord = [];
+// const loadingImages = document.body.querySelectorAll("[data-src]");
 
-while (
-  scrollY + document.documentElement.clientHeight >=
-  imagesTopCord[nextImageIndex]
-)
-  loadImage();
+// document.body
+//   .querySelectorAll("[data-src]")
+//   .forEach((element) =>
+//     imagesTopCord.push(element.getBoundingClientRect().top)
+//   );
 
-document.addEventListener("scroll", function (event) {
-  let nextImageTopCord = Math.round(imagesTopCord[nextImageIndex]);
-  const maxViewRange = scrollY + document.documentElement.clientHeight;
+// let nextImageIndex = 0;
 
-  if (maxViewRange >= nextImageTopCord + 100) loadImage();
-});
+// while (
+//   scrollY + document.documentElement.clientHeight >=
+//   imagesTopCord[nextImageIndex]
+// )
+//   loadImage();
 
-function loadImage() {
-  const imageSrc = loadingImages[nextImageIndex].dataset.src;
-  loadingImages[nextImageIndex].setAttribute("src", imageSrc);
-  nextImageIndex++;
-  console.log("загрузил");
+// document.addEventListener("scroll", function (event) {
+//   let nextImageTopCord = Math.round(imagesTopCord[nextImageIndex]);
+//   const maxViewRange = scrollY + document.documentElement.clientHeight;
+
+//   if (maxViewRange >= nextImageTopCord + 100) loadImage();
+// });
+
+// function loadImage() {
+//   const imageSrc = loadingImages[nextImageIndex].dataset.src;
+//   loadingImages[nextImageIndex].setAttribute("src", imageSrc);
+//   nextImageIndex++;
+//   console.log("загрузил");
+// }
+
+// 26) ------------------
+
+const select = document.body.querySelector("#genres");
+
+// 1 Способ найти selcted
+for (let option of select.options) {
+  if (option.selected) console.log(option.value);
 }
+// 2 Способ найти selected
+
+console.log(select.options[select.selectedIndex].value);
+
+let option = new Option("Классика", "classic", true, true);
+
+select.append(option);
