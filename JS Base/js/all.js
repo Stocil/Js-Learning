@@ -1588,10 +1588,19 @@ textarea.classList.add("edit");
 textarea.innerText = "Текст";
 
 div.addEventListener("click", function (event) {
-  console.log(event.target);
-  div.outerHTML = textarea.outerHTML;
+  div.remove();
+  document.body.append(textarea);
+  textarea.focus();
 });
 
-textarea.addEventListener("click", function (event) {
-  console.log(event.target);
+textarea.addEventListener("blur", function (event) {
+  div.innerHTML = textarea.value;
+  textarea.remove();
+  document.body.append(div);
+});
+
+textarea.addEventListener("keydown", function (event) {
+  if (event.code == "Enter") {
+    textarea.blur();
+  }
 });
