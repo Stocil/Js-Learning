@@ -1580,18 +1580,18 @@
 //   console.log("загрузил");
 // }
 
-// 26) ------------------
+// 26) focus/blur -------------------------------------------------------------------------
 
-const select = document.body.querySelector("#genres");
+const div = document.body.querySelector(".view");
+const textarea = document.createElement("textarea");
+textarea.classList.add("edit");
+textarea.innerText = "Текст";
 
-// 1 Способ найти selcted
-for (let option of select.options) {
-  if (option.selected) console.log(option.value);
-}
-// 2 Способ найти selected
+div.addEventListener("click", function (event) {
+  console.log(event.target);
+  div.outerHTML = textarea.outerHTML;
+});
 
-console.log(select.options[select.selectedIndex].value);
-
-let option = new Option("Классика", "classic", true, true);
-
-select.append(option);
+textarea.addEventListener("click", function (event) {
+  console.log(event.target);
+});
