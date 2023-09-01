@@ -391,83 +391,14 @@ p {
 } */
 
 
-/* ------- */
+/* 27) Фокусировка и передвижение предмета через клавиатуру */
 
-#bagua-table {
-  margin: 0 auto;
-}
-
-th {
-  text-align: center;
-  font-weight: bold;
-}
-
-td {
-  width: 170px;
-  height: 102px;
-
-  white-space: nowrap;
-  text-align: center;
-  vertical-align: middle;
-  padding: 10px;
-}
-
-.nw {
-  background-color: #999;
-}
-
-.n {
-  background-color: #03f;
-  color: #fff;
-}
-
-.ne {
-  background-color: #ff6;
-}
-
-.w {
-  background-color: #ff0;
-}
-
-.c {
-  background-color: #60c;
-  color: #fff;
-}
-
-.e {
-  background-color: #09f;
-  color: #fff;
-}
-
-.sw {
-  background-color: #963;
-  color: #fff;
-}
-
-.s {
-  background-color: #f60;
-  color: #fff;
-}
-
-.se {
-  background-color: #0c3;
-  color: #fff;
-}
-
-.edited {
-  border: none;
+#mouse {
+  display: inline-block;
+  cursor: pointer;
   margin: 0;
-  display: block;
-  resize: none;
-
-  width: 170px;
-  height: 102px;
-
-  overflow-y: auto;
-
-  background-color: white;
 }
 
-.edited__td {
-  padding: 0
+#mouse:focus {
+  outline: 1px dashed black;
 }

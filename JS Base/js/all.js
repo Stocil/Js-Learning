@@ -1605,144 +1605,34 @@
 //   }
 // });
 
-// ----------------------
+// 27) Фокусировка и передвижение предмета через клавиатуру -------------------------------
 
-let editing = false;
-let currentFocus;
+const mouse = document.body.querySelector("#mouse");
 
-const table = document.body.querySelector("#bagua-table");
-const textarea = document.createElement("textarea");
-const cancelButton = document.createElement("button");
-const okButton = document.createElement("button");
+mouse.addEventListener("click", focusOn);
+mouse.addEventListener("keydown", mouseTranslate);
 
-cancelButton.style.position = "absolute";
-okButton.style.position = "absolute";
-
-cancelButton.innerText = "CANCEL";
-okButton.innerText = "OK";
-
-table.addEventListener("click", tableClick);
-textarea.addEventListener("blur", areaBlur);
-
-function tableClick(event) {
-  if (event.target.tagName != "TD" || editing == true) return;
-  editing = true;
-  currentFocus = event.target;
-
-  textarea.value = event.target.innerHTML.trim();
-  textarea.classList.add("edited");
-
-  event.target.classList.add("edited__td");
-  event.target.innerHTML = "";
-  event.target.append(textarea);
-
-  textarea.focus();
-
-  event.target.append(cancelButton);
-  event.target.append(okButton);
-
-  okButton.style.left = event.target.getBoundingClientRect().left + "px";
-  okButton.style.top =
-    event.target.getBoundingClientRect().top +
-    event.target.offsetHeight +
-    scrollY +
-    "px";
-
-  cancelButton.style.left =
-    event.target.getBoundingClientRect().left + okButton.offsetWidth + "px";
-  cancelButton.style.top =
-    event.target.getBoundingClientRect().top +
-    event.target.offsetHeight +
-    scrollY +
-    "px";
-
-  okButton.addEventListener("click", saveChanges);
-  cancelButton.addEventListener("click", cancelChanges);
+function focusOn(event) {
+  mouse.setAttribute("tabindex", "-1");
+  mouse.style.position = "absolute";
+  mouse.focus();
 }
 
-function areaBlur(event) {
-  editing = false;
+function mouseTranslate(event) {
+  console.log(event.code);
+  let translateX = mouse.getBoundingClientRect().left;
+  let translateY = mouse.getBoundingClientRect().top;
 
-  const td = event.target.closest("td");
+  if (event.code == "ArrowRight") {
+    translateX += 100;
+  } else if (event.code == "ArrowLeft") {
+    translateX -= 100;
+  } else if (event.code == "ArrowUp") {
+    translateY -= 100;
+  } else if (event.code == "ArrowDown") {
+    translateY += 100;
+  }
 
-  td.classList.remove("edited__td");
-  td.innerHTML = textarea.value;
+  mouse.style.left = translateX + "px";
+  mouse.style.top = translateY + "px";
 }
-
-function saveChanges(event) {
-  textarea.blur();
-}
-
-function cancelChanges(event) {}
-
-// --------- Второе решение
-
-// let currentFocus;
-// const table = document.body.querySelector("#bagua-table");
-// const textarea = document.createElement("textarea");
-// const cancelButton = document.createElement("button");
-// const okButton = document.createElement("button");
-
-// cancelButton.style.position = "absolute";
-// okButton.style.position = "absolute";
-
-// cancelButton.innerText = "CANCEL";
-// okButton.innerText = "OK";
-
-// table.addEventListener("click", tableClick);
-
-// function tableClick(event) {
-//   if (!event.target.closest("td")) return;
-
-//   currentFocus = event.target.closest("td");
-//   currentFocus.setAttribute("tabindex", "-1");
-
-//   currentFocus.addEventListener("focus", tableFocus);
-//   currentFocus.addEventListener("blur", tableBlur);
-
-//   currentFocus.focus();
-//   console.log(document.activeElement);
-// }
-
-// function tableFocus(event) {
-//   textarea.value = currentFocus.innerHTML.trim();
-//   textarea.classList.add("edited");
-
-//   currentFocus.classList.add("edited__td");
-//   currentFocus.innerHTML = "";
-//   currentFocus.append(textarea);
-
-//   currentFocus.append(cancelButton);
-//   currentFocus.append(okButton);
-
-//   okButton.style.left = currentFocus.getBoundingClientRect().left + "px";
-//   okButton.style.top =
-//     currentFocus.getBoundingClientRect().top +
-//     currentFocus.offsetHeight +
-//     scrollY +
-//     "px";
-
-//   cancelButton.style.left =
-//     currentFocus.getBoundingClientRect().left + okButton.offsetWidth + "px";
-//   cancelButton.style.top =
-//     currentFocus.getBoundingClientRect().top +
-//     currentFocus.offsetHeight +
-//     scrollY +
-//     "px";
-
-//   okButton.addEventListener("click", saveChanges);
-//   cancelButton.addEventListener("click", cancelChanges);
-// }
-
-// function tableBlur(event) {
-//   currentFocus.classList.remove("edited__td");
-//   currentFocus.innerHTML = textarea.value;
-// }
-
-// function saveChanges(event) {
-//   currentFocus.blur();
-// }
-
-// function cancelChanges(event) {
-//   currentFocus.focus();
-// }
