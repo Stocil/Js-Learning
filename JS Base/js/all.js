@@ -1582,25 +1582,167 @@
 
 // 26) focus/blur -------------------------------------------------------------------------
 
-const div = document.body.querySelector(".view");
+// const div = document.body.querySelector(".view");
+// const textarea = document.createElement("textarea");
+// textarea.classList.add("edit");
+// textarea.innerText = "Текст";
+
+// div.addEventListener("click", function (event) {
+//   div.remove();
+//   document.body.append(textarea);
+//   textarea.focus();
+// });
+
+// textarea.addEventListener("blur", function (event) {
+//   div.innerHTML = textarea.value;
+//   textarea.remove();
+//   document.body.append(div);
+// });
+
+// textarea.addEventListener("keydown", function (event) {
+//   if (event.code == "Enter") {
+//     textarea.blur();
+//   }
+// });
+
+// ----------------------
+
+let editing = false;
+let currentFocus;
+
+const table = document.body.querySelector("#bagua-table");
 const textarea = document.createElement("textarea");
-textarea.classList.add("edit");
-textarea.innerText = "Текст";
+const cancelButton = document.createElement("button");
+const okButton = document.createElement("button");
 
-div.addEventListener("click", function (event) {
-  div.remove();
-  document.body.append(textarea);
+cancelButton.style.position = "absolute";
+okButton.style.position = "absolute";
+
+cancelButton.innerText = "CANCEL";
+okButton.innerText = "OK";
+
+table.addEventListener("click", tableClick);
+textarea.addEventListener("blur", areaBlur);
+
+function tableClick(event) {
+  if (event.target.tagName != "TD" || editing == true) return;
+  editing = true;
+  currentFocus = event.target;
+
+  textarea.value = event.target.innerHTML.trim();
+  textarea.classList.add("edited");
+
+  event.target.classList.add("edited__td");
+  event.target.innerHTML = "";
+  event.target.append(textarea);
+
   textarea.focus();
-});
 
-textarea.addEventListener("blur", function (event) {
-  div.innerHTML = textarea.value;
-  textarea.remove();
-  document.body.append(div);
-});
+  event.target.append(cancelButton);
+  event.target.append(okButton);
 
-textarea.addEventListener("keydown", function (event) {
-  if (event.code == "Enter") {
-    textarea.blur();
-  }
-});
+  okButton.style.left = event.target.getBoundingClientRect().left + "px";
+  okButton.style.top =
+    event.target.getBoundingClientRect().top +
+    event.target.offsetHeight +
+    scrollY +
+    "px";
+
+  cancelButton.style.left =
+    event.target.getBoundingClientRect().left + okButton.offsetWidth + "px";
+  cancelButton.style.top =
+    event.target.getBoundingClientRect().top +
+    event.target.offsetHeight +
+    scrollY +
+    "px";
+
+  okButton.addEventListener("click", saveChanges);
+  cancelButton.addEventListener("click", cancelChanges);
+}
+
+function areaBlur(event) {
+  editing = false;
+
+  const td = event.target.closest("td");
+
+  td.classList.remove("edited__td");
+  td.innerHTML = textarea.value;
+}
+
+function saveChanges(event) {
+  textarea.blur();
+}
+
+function cancelChanges(event) {}
+
+// --------- Второе решение
+
+// let currentFocus;
+// const table = document.body.querySelector("#bagua-table");
+// const textarea = document.createElement("textarea");
+// const cancelButton = document.createElement("button");
+// const okButton = document.createElement("button");
+
+// cancelButton.style.position = "absolute";
+// okButton.style.position = "absolute";
+
+// cancelButton.innerText = "CANCEL";
+// okButton.innerText = "OK";
+
+// table.addEventListener("click", tableClick);
+
+// function tableClick(event) {
+//   if (!event.target.closest("td")) return;
+
+//   currentFocus = event.target.closest("td");
+//   currentFocus.setAttribute("tabindex", "-1");
+
+//   currentFocus.addEventListener("focus", tableFocus);
+//   currentFocus.addEventListener("blur", tableBlur);
+
+//   currentFocus.focus();
+//   console.log(document.activeElement);
+// }
+
+// function tableFocus(event) {
+//   textarea.value = currentFocus.innerHTML.trim();
+//   textarea.classList.add("edited");
+
+//   currentFocus.classList.add("edited__td");
+//   currentFocus.innerHTML = "";
+//   currentFocus.append(textarea);
+
+//   currentFocus.append(cancelButton);
+//   currentFocus.append(okButton);
+
+//   okButton.style.left = currentFocus.getBoundingClientRect().left + "px";
+//   okButton.style.top =
+//     currentFocus.getBoundingClientRect().top +
+//     currentFocus.offsetHeight +
+//     scrollY +
+//     "px";
+
+//   cancelButton.style.left =
+//     currentFocus.getBoundingClientRect().left + okButton.offsetWidth + "px";
+//   cancelButton.style.top =
+//     currentFocus.getBoundingClientRect().top +
+//     currentFocus.offsetHeight +
+//     scrollY +
+//     "px";
+
+//   okButton.addEventListener("click", saveChanges);
+//   cancelButton.addEventListener("click", cancelChanges);
+// }
+
+// function tableBlur(event) {
+//   currentFocus.classList.remove("edited__td");
+//   currentFocus.innerHTML = textarea.value;
+// }
+
+// function saveChanges(event) {
+//   currentFocus.blur();
+// }
+
+// function cancelChanges(event) {
+//   currentFocus.focus();
+// }
