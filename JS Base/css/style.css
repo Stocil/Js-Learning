@@ -393,7 +393,7 @@ p {
 
 /* 27) Фокусировка и передвижение предмета через клавиатуру */
 
-#mouse {
+/* #mouse {
   display: inline-block;
   cursor: pointer;
   margin: 0;
@@ -401,4 +401,31 @@ p {
 
 #mouse:focus {
   outline: 1px dashed black;
+} */
+
+
+/* 28) Депозитный калькулятор */
+
+td select,
+td input {
+  width: 150px;
+  font-size: 16px;
+
+  background-color: #f7dddd;
+  border: 3px solid black;
+  border-radius: 22px;
+
+  padding: 10px;
+}
+
+#diagram td {
+  vertical-align: bottom;
+  text-align: center;
+  padding: 10px;
+}
+
+#diagram div {
+  margin: auto;
+
+  transition: height 0.3s ease-in-out;
 }

@@ -1607,32 +1607,87 @@
 
 // 27) Фокусировка и передвижение предмета через клавиатуру -------------------------------
 
-const mouse = document.body.querySelector("#mouse");
+// const mouse = document.body.querySelector("#mouse");
 
-mouse.addEventListener("click", focusOn);
-mouse.addEventListener("keydown", mouseTranslate);
+// mouse.addEventListener("click", focusOn);
+// mouse.addEventListener("keydown", mouseTranslate);
 
-function focusOn(event) {
-  mouse.setAttribute("tabindex", "-1");
-  mouse.style.position = "absolute";
-  mouse.focus();
+// function focusOn(event) {
+//   mouse.tabIndex = -1;
+//   mouse.style.position = "absolute";
+//   mouse.focus();
+// }
+
+// function mouseTranslate(event) {
+//   console.log(event.code);
+//   let translateX = mouse.getBoundingClientRect().left;
+//   let translateY = mouse.getBoundingClientRect().top;
+
+//   if (event.code == "ArrowRight") {
+//     translateX += 100;
+//   } else if (event.code == "ArrowLeft") {
+//     translateX -= 100;
+//   } else if (event.code == "ArrowUp") {
+//     translateY -= 100;
+//   } else if (event.code == "ArrowDown") {
+//     translateY += 100;
+//   }
+
+//   mouse.style.left = translateX + "px";
+//   mouse.style.top = translateY + "px";
+// }
+
+// 28) Депозитный калькулятор ----------------------------------------------------------
+
+// const form = document.body.querySelector("[name = 'calculator']");
+const form = document.forms[0];
+const diagram = document.body.querySelector("#diagram");
+const moneyBefore = diagram.querySelector("#money-before");
+const moneyAfter = diagram.querySelector("#money-after");
+
+calculate();
+
+form.addEventListener("change", selectRecalculation);
+form.addEventListener("input", inputRecalculation);
+
+function selectRecalculation(event) {
+  if (!event.target.name == "months") return;
+  calculate();
 }
 
-function mouseTranslate(event) {
-  console.log(event.code);
-  let translateX = mouse.getBoundingClientRect().left;
-  let translateY = mouse.getBoundingClientRect().top;
+function inputRecalculation(event) {
+  if (event.target.name != "money" && event.target.name != "interest") return;
+  calculate();
+}
 
-  if (event.code == "ArrowRight") {
-    translateX += 100;
-  } else if (event.code == "ArrowLeft") {
-    translateX -= 100;
-  } else if (event.code == "ArrowUp") {
-    translateY -= 100;
-  } else if (event.code == "ArrowDown") {
-    translateY += 100;
-  }
+function calculate() {
+  // Начальная сумма денег
+  const initial = form.querySelector("[name = 'money']").value;
 
-  mouse.style.left = translateX + "px";
-  mouse.style.top = translateY + "px";
+  // Количество месяцев
+  const months =
+    form.querySelector("[name = 'months']")[
+      form.querySelector("[name = 'months']").selectedIndex
+    ].value;
+
+  // Процентов в год
+  const interest = form.querySelector("[name = 'interest']").value / 100;
+
+  const diagramBefore = diagram.querySelector("#height-before");
+  const diagramAfter = diagram.querySelector("#height-after");
+
+  const years = months / 12;
+
+  moneyBefore.innerText = initial;
+  moneyAfter.innerHTML = Math.round(initial * (1 + interest) ** years);
+
+  const differenceKoef = +moneyAfter.innerHTML / +moneyBefore.innerHTML;
+
+  diagramBefore.style.height =
+    Math.round(+getComputedStyle(diagramBefore).height.slice(0, -2)) + "px";
+
+  diagramAfter.style.height =
+    Math.round(
+      +getComputedStyle(diagramBefore).height.slice(0, -2) * differenceKoef
+    ) + "px";
 }
