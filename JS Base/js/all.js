@@ -1640,54 +1640,118 @@
 // 28) Депозитный калькулятор ----------------------------------------------------------
 
 // const form = document.body.querySelector("[name = 'calculator']");
-const form = document.forms[0];
-const diagram = document.body.querySelector("#diagram");
-const moneyBefore = diagram.querySelector("#money-before");
-const moneyAfter = diagram.querySelector("#money-after");
+// const form = document.forms[0];
+// const diagram = document.body.querySelector("#diagram");
+// const moneyBefore = diagram.querySelector("#money-before");
+// const moneyAfter = diagram.querySelector("#money-after");
 
-calculate();
+// calculate();
 
-form.addEventListener("change", selectRecalculation);
-form.addEventListener("input", inputRecalculation);
+// form.addEventListener("change", selectRecalculation);
+// form.addEventListener("input", inputRecalculation);
 
-function selectRecalculation(event) {
-  if (!event.target.name == "months") return;
-  calculate();
+// function selectRecalculation(event) {
+//   if (!event.target.name == "months") return;
+//   calculate();
+// }
+
+// function inputRecalculation(event) {
+//   if (event.target.name != "money" && event.target.name != "interest") return;
+//   calculate();
+// }
+
+// function calculate() {
+//   // Начальная сумма денег
+//   const initial = form.querySelector("[name = 'money']").value;
+
+//   // Количество месяцев
+//   const months =
+//     form.querySelector("[name = 'months']")[
+//       form.querySelector("[name = 'months']").selectedIndex
+//     ].value;
+
+//   // Процентов в год
+//   const interest = form.querySelector("[name = 'interest']").value / 100;
+
+//   const diagramBefore = diagram.querySelector("#height-before");
+//   const diagramAfter = diagram.querySelector("#height-after");
+
+//   const years = months / 12;
+
+//   moneyBefore.innerText = initial;
+//   moneyAfter.innerHTML = Math.round(initial * (1 + interest) ** years);
+
+//   const differenceKoef = +moneyAfter.innerHTML / +moneyBefore.innerHTML;
+
+//   diagramBefore.style.height =
+//     Math.round(+getComputedStyle(diagramBefore).height.slice(0, -2)) + "px";
+
+//   diagramAfter.style.height =
+//     Math.round(
+//       +getComputedStyle(diagramBefore).height.slice(0, -2) * differenceKoef
+//     ) + "px";
+// }
+
+// 29) Модальное диалоговое окно с формой --------------------------------------------------
+
+const showModalButton = document.body.querySelector(".show__modal");
+
+showModalButton.addEventListener("click", showModalWindow);
+
+function showModalWindow(event) {
+  showPrompt("Введите что-нибудь<br>...умное :)", function (value) {
+    alert(value);
+  });
 }
 
-function inputRecalculation(event) {
-  if (event.target.name != "money" && event.target.name != "interest") return;
-  calculate();
-}
+function showPrompt(html, callback) {
+  const message = document.body.querySelector("#prompt-message");
+  const modalInner = document.body.querySelector(".prompt-form-container");
+  const form = document.body.querySelector("#prompt-form");
 
-function calculate() {
-  // Начальная сумма денег
-  const initial = form.querySelector("[name = 'money']").value;
+  message.innerHTML = html;
 
-  // Количество месяцев
-  const months =
-    form.querySelector("[name = 'months']")[
-      form.querySelector("[name = 'months']").selectedIndex
-    ].value;
+  form.querySelector("[name = 'text']").value = null;
+  modalInner.classList.remove("modal__close");
+  document.body.classList.add("body__no-scroll");
 
-  // Процентов в год
-  const interest = form.querySelector("[name = 'interest']").value / 100;
+  form.addEventListener("click", closeButtons);
+  document.addEventListener("keydown", specialSymb);
 
-  const diagramBefore = diagram.querySelector("#height-before");
-  const diagramAfter = diagram.querySelector("#height-after");
+  form.querySelector("[name = 'text']").focus();
 
-  const years = months / 12;
+  function closeButtons(event) {
+    if (event.target.tagName !== "INPUT" || event.target.name === "text")
+      return;
 
-  moneyBefore.innerText = initial;
-  moneyAfter.innerHTML = Math.round(initial * (1 + interest) ** years);
+    event.preventDefault();
 
-  const differenceKoef = +moneyAfter.innerHTML / +moneyBefore.innerHTML;
+    let value;
+    if (event.target.type === "submit") {
+      if (form.querySelector("[name = 'text']").value == "") return;
 
-  diagramBefore.style.height =
-    Math.round(+getComputedStyle(diagramBefore).height.slice(0, -2)) + "px";
+      value = form.querySelector("[name = 'text']").value;
+    } else {
+      value = null;
+    }
 
-  diagramAfter.style.height =
-    Math.round(
-      +getComputedStyle(diagramBefore).height.slice(0, -2) * differenceKoef
-    ) + "px";
+    callback(`Вы ввели: ${value}`);
+
+    modalInner.classList.add("modal__close");
+    document.body.classList.remove("body__no-scroll");
+    form.removeEventListener("click", closeButtons);
+    document.removeEventListener("keydown", specialSymb);
+  }
+
+  function specialSymb(event) {
+    if (event.code !== "Escape") return;
+
+    let value = null;
+    callback(`Вы ввели: ${value}`);
+
+    modalInner.classList.add("modal__close");
+    document.body.classList.remove("body__no-scroll");
+    form.removeEventListener("click", closeButtons);
+    document.removeEventListener("keydown", specialSymb);
+  }
 }

@@ -406,7 +406,7 @@ p {
 
 /* 28) Депозитный калькулятор */
 
-td select,
+/* td select,
 td input {
   width: 150px;
   font-size: 16px;
@@ -428,4 +428,55 @@ td input {
   margin: auto;
 
   transition: height 0.3s ease-in-out;
+} */
+
+
+/* 29) Модальное диалоговое окно с формой  */
+
+.body__no-scroll {
+  overflow: hidden;
+}
+
+.inner {
+  width: 100%;
+  height: 2000px;
+  padding: 0;
+  margin: 0;
+}
+
+.prompt-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal__close {
+  display: none;
+}
+
+
+#prompt-form {
+  display: inline-block;
+  padding: 10px 10px 10px 70px;
+  width: 275px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: white url(https://en.js.cx/clipart/prompt.png) no-repeat left 5px;
+  vertical-align: middle;
+}
+
+#prompt-form input[name="text"] {
+  display: block;
+  margin: 5px;
+  width: 180px;
 }
