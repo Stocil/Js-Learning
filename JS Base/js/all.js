@@ -1694,64 +1694,109 @@
 
 // 29) Модальное диалоговое окно с формой --------------------------------------------------
 
-const showModalButton = document.body.querySelector(".show__modal");
+// const showModalButton = document.body.querySelector(".show__modal");
 
-showModalButton.addEventListener("click", showModalWindow);
+// showModalButton.addEventListener("click", showModalWindow);
 
-function showModalWindow(event) {
-  showPrompt("Введите что-нибудь<br>...умное :)", function (value) {
-    alert(value);
-  });
-}
+// function showModalWindow(event) {
+//   showPrompt("Введите что-нибудь<br>...умное :)", function (value) {
+//     alert(value);
+//   });
+// }
 
-function showPrompt(html, callback) {
-  const message = document.body.querySelector("#prompt-message");
-  const modalInner = document.body.querySelector(".prompt-form-container");
-  const form = document.body.querySelector("#prompt-form");
+// function showPrompt(html, callback) {
+//   const message = document.body.querySelector("#prompt-message");
+//   const modalInner = document.body.querySelector(".prompt-form-container");
+//   const form = document.body.querySelector("#prompt-form");
 
-  message.innerHTML = html;
+//   message.innerHTML = html;
 
-  form.querySelector("[name = 'text']").value = null;
-  modalInner.classList.remove("modal__close");
-  document.body.classList.add("body__no-scroll");
+//   form.querySelector("[name = 'text']").value = null;
+//   modalInner.classList.remove("modal__close");
+//   document.body.classList.add("body__no-scroll");
 
-  form.addEventListener("click", closeButtons);
-  document.addEventListener("keydown", specialSymb);
+//   form.addEventListener("click", closeButtons);
+//   document.addEventListener("keydown", specialSymb);
 
-  form.querySelector("[name = 'text']").focus();
+//   form.querySelector("[name = 'text']").focus();
 
-  function closeButtons(event) {
-    if (event.target.tagName !== "INPUT" || event.target.name === "text")
-      return;
+//   function closeButtons(event) {
+//     if (event.target.tagName !== "INPUT" || event.target.name === "text")
+//       return;
 
-    event.preventDefault();
+//     event.preventDefault();
 
-    let value;
-    if (event.target.type === "submit") {
-      if (form.querySelector("[name = 'text']").value == "") return;
+//     let value;
+//     if (event.target.type === "submit") {
+//       if (form.querySelector("[name = 'text']").value == "") return;
 
-      value = form.querySelector("[name = 'text']").value;
-    } else {
-      value = null;
-    }
+//       value = form.querySelector("[name = 'text']").value;
+//     } else {
+//       value = null;
+//     }
 
-    callback(`Вы ввели: ${value}`);
+//     callback(`Вы ввели: ${value}`);
 
-    modalInner.classList.add("modal__close");
-    document.body.classList.remove("body__no-scroll");
-    form.removeEventListener("click", closeButtons);
-    document.removeEventListener("keydown", specialSymb);
+//     modalInner.classList.add("modal__close");
+//     document.body.classList.remove("body__no-scroll");
+//     form.removeEventListener("click", closeButtons);
+//     document.removeEventListener("keydown", specialSymb);
+//   }
+
+//   function specialSymb(event) {
+//     if (event.code !== "Escape") return;
+
+//     let value = null;
+//     callback(`Вы ввели: ${value}`);
+
+//     modalInner.classList.add("modal__close");
+//     document.body.classList.remove("body__no-scroll");
+//     form.removeEventListener("click", closeButtons);
+//     document.removeEventListener("keydown", specialSymb);
+//   }
+// }
+
+// 30) Загрузка изображения с колбэком ---------------------------------------------------
+
+function preloadImages(sources, callback) {
+  let count = 0;
+
+  function onLoad() {
+    count++;
+    if (count == sources.length) callback();
   }
 
-  function specialSymb(event) {
-    if (event.code !== "Escape") return;
-
-    let value = null;
-    callback(`Вы ввели: ${value}`);
-
-    modalInner.classList.add("modal__close");
-    document.body.classList.remove("body__no-scroll");
-    form.removeEventListener("click", closeButtons);
-    document.removeEventListener("keydown", specialSymb);
+  for (let img of sources) {
+    let image = document.createElement("img");
+    image.src = img;
+    image.onload = image.onerror = onLoad;
   }
 }
+
+// ---------- тест ----------
+
+let sources = [
+  "https://en.js.cx/images-load/1.jpg",
+  "https://en.js.cx/images-load/2.jpg",
+  "https://en.js.cx/images-load/3.jpg",
+];
+
+// добавляем случайные символы к ссылкам, чтобы избежать кеширования
+for (let i = 0; i < sources.length; i++) {
+  sources[i] += "?" + Math.random();
+}
+
+// для каждого изображения
+// создадим другое изображение с аналогичным src и проверим, есть ли у нас его ширина
+function testLoaded() {
+  let widthSum = 0;
+  for (let i = 0; i < sources.length; i++) {
+    let img = document.createElement("img");
+    img.src = sources[i];
+    widthSum += img.width;
+  }
+  alert(widthSum);
+}
+
+// каждое изображение в разрешении 100x100, итоговая сумма их ширин должна быть 300
+preloadImages(sources, testLoaded);

@@ -433,7 +433,7 @@ td input {
 
 /* 29) Модальное диалоговое окно с формой  */
 
-.body__no-scroll {
+/* .body__no-scroll {
   overflow: hidden;
 }
 
@@ -479,4 +479,7 @@ td input {
   display: block;
   margin: 5px;
   width: 180px;
-}
+} */
+
+
+/* 30) Загрузка изображения с колбэком */
