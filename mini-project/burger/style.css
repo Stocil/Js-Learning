@@ -1,0 +1,89 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.62;
+  font-size: 18px;
+
+  cursor: pointer;
+
+  background-color: black;
+}
+
+.container {
+  max-width: 1220px;
+
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  padding-bottom: 10px;
+  border-bottom: 1px solid white;
+}
+
+.header__logo {
+  margin-top: 10px;
+}
+
+.header__list {
+  display: flex;
+  gap: 30px;
+}
+
+.header__list-item {
+  color: white
+}
+
+.header__button {
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+  min-width: 180px;
+  border-radius: 25px;
+  background: linear-gradient(137deg, #4499d9 0%, #7367be 100%);
+  padding: 13px 14px 14px 19px;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+
+  margin-left: 55px;
+}
