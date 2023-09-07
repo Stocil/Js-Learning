@@ -30,6 +30,8 @@ body {
 }
 
 body {
+  overflow: hidden;
+
   font-family: "Josefin Sans", sans-serif;
   font-weight: 500;
   line-height: 1.62;
@@ -75,6 +77,20 @@ body {
   color: white
 }
 
+.header__list-item::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 0px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#4499d9), color-stop(#4499d9), to(#7367be));
+  background-image: linear-gradient(to right, #4499d9, #4499d9, #7367be);
+  transition: all 0.3s ease-in-out;
+}
+
+.header__list-item:hover::after {
+  width: 100%;
+}
+
 .header__button {
   font-family: "Josefin Sans", sans-serif;
   cursor: pointer;
@@ -92,6 +108,14 @@ body {
   line-height: 1.33;
 
   margin-left: 55px;
+
+  transition: all 0.3s ease;
+}
+
+.header__button:hover {
+  background: linear-gradient(137deg, #4499d9 100%, #7367be 0%);
+  -webkit-box-shadow: 2px 2px 7px #826f8c;
+  box-shadow: 2px 2px 7px #826f8c;
 }
 
 /* Мобильная */
@@ -152,21 +176,42 @@ body {
 }
 
 .burger__inner {
-  display: none;
-
   position: absolute;
   top: 0;
   right: 0;
 
-  width: 50vw;
+  width: 0vw;
   height: 940px;
 
   background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+
+  transition: 1s cubic-bezier(.7, 0, .2, 1);
 }
 
-.active {
-  display: block;
+.burger__active {
+  transform: translateX(360px);
+
+  transition: 1s cubic-bezier(.7, 0, .2, 1);
 }
+
+.burger__active-true {
+  transform: translateX(0px);
+}
+
+
+.active {
+  border-top-left-radius: 70%;
+  border-bottom-left-radius: 70%;
+  width: 50vw;
+}
+
 
 @media (max-width: 1000px) {
   .header__content-desc {
@@ -175,5 +220,45 @@ body {
 
   .header__content-mobile {
     display: flex;
+  }
+
+  .header__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 250px;
+  }
+
+  .header__list-item {
+    font-weight: 700;
+    font-size: 30px;
+    color: #7367be;
+  }
+
+  .header__button {
+    margin-top: 50px;
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 800px) {
+  .burger__inner {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+  }
+
+  .active {
+    width: 100vw;
+
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+  }
+}
+
+@media (max-width: 400px) {
+  .header__logo {
+    transform: scale(0.7);
   }
 }

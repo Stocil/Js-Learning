@@ -28,6 +28,7 @@ window.addEventListener("resize", function (event) {
 
 const burgerButton = document.body.querySelector(".header__burger");
 const burgerInner = document.body.querySelector(".burger__inner");
+const burgerActive = document.body.querySelector(".burger__active");
 
 burgerButton.addEventListener("click", function (event) {
   if (!event.target.closest(".header__burger")) return;
@@ -39,4 +40,5 @@ burgerButton.addEventListener("click", function (event) {
   burgerButton.lastElementChild.classList.toggle("burger__last-line__active");
 
   burgerInner.classList.toggle("active");
+  burgerActive.classList.toggle("burger__active-true");
 });

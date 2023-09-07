@@ -16,14 +16,24 @@
   <body>
     <div class="container">
       <div class="header__inner">
-        <img src="images/logo.png" alt="logo" class="header__logo" />
+        <a href="#" class="header__logo-link">
+          <img src="images/logo.png" alt="logo" class="header__logo" />
+        </a>
 
         <div class="header__content-desc">
           <ul class="header__list">
-            <li class="header__list-item">Home</li>
-            <li class="header__list-item">About Us</li>
-            <li class="header__list-item">Prices</li>
-            <li class="header__list-item">Rules</li>
+            <a href="#" class="header__list-link">
+              <li class="header__list-item">Home</li>
+            </a>
+            <a href="#" class="header__list-link">
+              <li class="header__list-item">About Us</li>
+            </a>
+            <a href="#" class="header__list-link">
+              <li class="header__list-item">Prices</li>
+            </a>
+            <a href="#" class="header__list-link">
+              <li class="header__list-item">Rules</li>
+            </a>
           </ul>
           <button class="header__button">Get Started Now</button>
         </div>
@@ -35,7 +45,27 @@
             <span class="burger__line"></span>
           </div>
 
-          <div class="burger__inner"></div>
+          <div class="burger__inner">
+            <div class="burger__active">
+              <ul class="header__list">
+                <a href="#" class="header__list-link">
+                  <li class="header__list-item">Home</li>
+                </a>
+                <a href="#" class="header__list-link">
+                  <li class="header__list-item">About Us</li>
+                </a>
+                <a href="#" class="header__list-link">
+                  <li class="header__list-item">Prices</li>
+                </a>
+                <a href="#" class="header__list-link">
+                  <li class="header__list-item">Rules</li>
+                </a>
+              </ul>
+              <button class="header__button">
+                <a href="#" class="header__list-link"> Get Started Now </a>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
