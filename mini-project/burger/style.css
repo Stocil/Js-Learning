@@ -60,6 +60,12 @@ body {
   margin-top: 10px;
 }
 
+.header__content-desc {
+  display: flex;
+
+  align-items: end;
+}
+
 .header__list {
   display: flex;
   gap: 30px;
@@ -86,4 +92,88 @@ body {
   line-height: 1.33;
 
   margin-left: 55px;
+}
+
+/* Мобильная */
+
+.header__content-mobile {
+  display: none;
+}
+
+.header__burger {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  color: white;
+  /* Общий цвет для линий */
+}
+
+.header__burger:hover {
+  color: #7367be;
+}
+
+.header__burger__active {
+  color: black
+}
+
+.burger__line {
+  content: '';
+
+  width: 40px;
+  height: 3px;
+
+  background-color: currentColor;
+  /* Имба */
+
+  transform-origin: left center;
+  transform: rotate(0);
+  transform: scale(1);
+  margin-top: 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+.burger__first-line__active {
+  transform: rotate(45deg);
+  margin-top: 10px
+}
+
+.burger__second-line__active {
+  transform: scale(0)
+}
+
+.burger__last-line__active {
+  transform: rotate(-45deg);
+  margin-top: 8px
+}
+
+.burger__inner {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 50vw;
+  height: 940px;
+
+  background-color: white;
+}
+
+.active {
+  display: block;
+}
+
+@media (max-width: 1000px) {
+  .header__content-desc {
+    display: none;
+  }
+
+  .header__content-mobile {
+    display: flex;
+  }
 }
