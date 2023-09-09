@@ -1,9 +1,12 @@
 const body = document.body;
+const closeClick = new CustomEvent("click");
+
+// Бургер
 const burgerButton = body.querySelector(".header__menu-btn");
-const burgerNav = body.querySelector(".header_nav-bottom");
 const burgerLines = body.querySelectorAll(".header__menu-line");
 
-const closeClick = new CustomEvent("click");
+// Навигация
+const burgerNav = body.querySelector(".header_nav-bottom");
 
 burgerButton.addEventListener("click", burgerMenuActive);
 

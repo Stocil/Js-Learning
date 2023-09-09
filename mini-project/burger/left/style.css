@@ -106,9 +106,16 @@ body {
   margin-left: 4px;
 }
 
+.header_nav-bottom {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 72px;
+}
 
 /* Бургер */
 
+/* Стили для кнопки меню */
 .header__menu-btn {
   z-index: 1;
   cursor: pointer;
@@ -153,15 +160,10 @@ body {
   top: 25px;
 }
 
-.header_nav-bottom {
-  margin-top: 16px;
-  display: flex;
-  justify-content: space-between;
-  gap: 72px;
-}
-
 
 @media (max-width: 1050px) {
+
+  /* Стили для списка навигации */
   .header_nav-bottom {
     position: fixed;
     left: 0;
@@ -188,6 +190,7 @@ body {
     gap: 24px;
   }
 
+  /* Стили и анимации для кнопки */
   .header__menu-btn {
     display: block;
   }
