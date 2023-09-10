@@ -1,0 +1,111 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  height: 2300px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.62;
+  color: #826f8c;
+}
+
+.box {
+  content: "";
+  margin-top: 100px;
+  margin-left: 200px;
+  width: 300px;
+  height: 300px;
+}
+.box-1 {
+  background-color: red;
+}
+.box-2 {
+  background-color: pink;
+}
+.box-3 {
+  background-color: black;
+}
+
+.scroll-lock {
+  overflow: hidden;
+  padding-right: 17px;
+  top: 0px;
+}
+
+.scrollH-lock {
+  overflow-x: hidden;
+}
+
+.fadeInLeft {
+  opacity: 0;
+  -webkit-transform: translateX(-10%);
+      -ms-transform: translateX(-10%);
+          transform: translateX(-10%);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.fadeInLeft-show {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.fadeInRight {
+  opacity: 0;
+  -webkit-transform: translateX(10%);
+      -ms-transform: translateX(10%);
+          transform: translateX(10%);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.fadeInRight-show {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.fadeInDown {
+  opacity: 0;
+  -webkit-transform: translateY(10%);
+      -ms-transform: translateY(10%);
+          transform: translateY(10%);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.fadeInDown-show {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
