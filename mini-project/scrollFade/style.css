@@ -48,6 +48,9 @@ body {
 .box-3 {
   background-color: black;
 }
+.box-4 {
+  background-color: blueviolet;
+}
 
 .scroll-lock {
   overflow: hidden;
@@ -61,43 +64,43 @@ body {
 
 .fadeInLeft {
   opacity: 0;
-  -webkit-transform: translateX(-10%);
-      -ms-transform: translateX(-10%);
-          transform: translateX(-10%);
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transform: translateX(-15%);
+      -ms-transform: translateX(-15%);
+          transform: translateX(-15%);
+  -webkit-transition: all 1.3s ease-in-out;
+  transition: all 1.3s ease-in-out;
 }
 .fadeInLeft-show {
   opacity: 1;
   -webkit-transform: translateX(0);
       -ms-transform: translateX(0);
           transform: translateX(0);
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transition: all 1.3s ease-in-out;
+  transition: all 1.3s ease-in-out;
 }
 
 .fadeInRight {
   opacity: 0;
-  -webkit-transform: translateX(10%);
-      -ms-transform: translateX(10%);
-          transform: translateX(10%);
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transform: translateX(15%);
+      -ms-transform: translateX(15%);
+          transform: translateX(15%);
+  -webkit-transition: all 1.3s ease-in-out;
+  transition: all 1.3s ease-in-out;
 }
 .fadeInRight-show {
   opacity: 1;
   -webkit-transform: translateX(0);
       -ms-transform: translateX(0);
           transform: translateX(0);
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transition: all 1.3s ease-in-out;
+  transition: all 1.3s ease-in-out;
 }
 
 .fadeInDown {
   opacity: 0;
-  -webkit-transform: translateY(10%);
-      -ms-transform: translateY(10%);
-          transform: translateY(10%);
+  -webkit-transform: translateY(15%);
+      -ms-transform: translateY(15%);
+          transform: translateY(15%);
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
@@ -108,4 +111,15 @@ body {
           transform: translateY(0);
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
+}
+
+.fadeInCenter {
+  opacity: 0;
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
+}
+.fadeInCenter-show {
+  opacity: 1;
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
 }

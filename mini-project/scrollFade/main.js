@@ -23,6 +23,7 @@ const scrollObserver = new IntersectionObserver(reveal, options);
 const hidedElementsLeft = body.querySelectorAll(".fadeInLeft");
 const hidedElementsRight = body.querySelectorAll(".fadeInRight");
 const hidedElementsDown = body.querySelectorAll(".fadeInDown");
+const hidedElementsCenter = body.querySelectorAll(".fadeInCenter");
 
 hidedElementsLeft.forEach((element) => {
   scrollObserver.observe(element);
@@ -33,6 +34,10 @@ hidedElementsRight.forEach((element) => {
 });
 
 hidedElementsDown.forEach((element) => {
+  scrollObserver.observe(element);
+});
+
+hidedElementsCenter.forEach((element) => {
   scrollObserver.observe(element);
 });
 
@@ -54,4 +59,10 @@ function wichSide(element) {
     element.classList.contains("fadeInDown-show")
   )
     return "fadeInDown";
+
+  if (
+    element.classList.contains("fadeInCenter") ||
+    element.classList.contains("fadeInCenter-show")
+  )
+    return "fadeInCenter";
 }

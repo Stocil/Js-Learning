@@ -45,6 +45,10 @@ body {
   &-3 {
     background-color: black;
   }
+
+  &-4 {
+    background-color: blueviolet;
+  }
 }
 
 // Fade
@@ -60,36 +64,46 @@ body {
 
 .fadeInLeft {
   opacity: 0;
-  transform: translateX(-10%);
-  transition: all 1s ease-in-out;
+  transform: translateX(-15%);
+  transition: all 1.3s ease-in-out;
 
   &-show {
     opacity: 1;
     transform: translateX(0);
-    transition: all 1s ease-in-out;
+    transition: all 1.3s ease-in-out;
   }
 }
 
 .fadeInRight {
   opacity: 0;
-  transform: translateX(10%);
-  transition: all 1s ease-in-out;
+  transform: translateX(15%);
+  transition: all 1.3s ease-in-out;
 
   &-show {
     opacity: 1;
     transform: translateX(0);
-    transition: all 1s ease-in-out;
+    transition: all 1.3s ease-in-out;
   }
 }
 
 .fadeInDown {
   opacity: 0;
-  transform: translateY(10%);
+  transform: translateY(15%);
   transition: all 1s ease-in-out;
 
   &-show {
     opacity: 1;
     transform: translateY(0);
     transition: all 1s ease-in-out;
+  }
+}
+
+.fadeInCenter {
+  opacity: 0;
+  transition: all 1.5s ease-in-out;
+
+  &-show {
+    opacity: 1;
+    transition: all 1.5s ease-in-out;
   }
 }
