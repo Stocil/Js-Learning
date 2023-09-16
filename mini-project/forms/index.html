@@ -91,32 +91,6 @@
             />
           </div>
 
-          <label class="form__label checkbox__title">Checkboxes</label>
-
-          <div class="form__group project-location-check fadeInLeft">
-            <div class="form__group form__group-check">
-              <label class="form__label form__check-label">Фотоснимки</label>
-              <input type="checkbox" class="form__check" />
-            </div>
-
-            <div class="form__group form__group-check">
-              <label class="form__label form__check-label">Анимация</label>
-              <input type="checkbox" class="form__check" />
-            </div>
-
-            <div class="form__group form__group-check">
-              <label class="form__label form__check-label"
-                >3D в реальном времени</label
-              >
-              <input type="checkbox" class="form__check" />
-            </div>
-
-            <div class="form__group form__group-check">
-              <label class="form__label form__check-label">VR</label>
-              <input type="checkbox" class="form__check" />
-            </div>
-          </div>
-
           <label class="form__label date__title">Date</label>
 
           <div class="form__group form__group-date fadeInLeft">
@@ -134,25 +108,57 @@
             ></textarea>
           </div>
 
-          <label class="form__label select__title">Select</label>
+          <label class="form__label checkbox__title">Checkboxes styled</label>
+
+          <div class="form__group project-location-check fadeInLeft">
+            <div class="form__group form__group-check">
+              <input type="checkbox" class="form__check" id="photos" />
+              <label class="form__label form__check-label" for="photos"
+                >Фотоснимки</label
+              >
+            </div>
+
+            <div class="form__group form__group-check">
+              <input type="checkbox" class="form__check" id="animations" />
+              <label class="form__label form__check-label" for="animations"
+                >Анимация</label
+              >
+            </div>
+
+            <div class="form__group form__group-check">
+              <input type="checkbox" class="form__check" id="3d-in-real-time" />
+              <label class="form__label form__check-label" for="3d-in-real-time"
+                >3D в реальном времени</label
+              >
+            </div>
+
+            <div class="form__group form__group-check">
+              <input type="checkbox" class="form__check" id="vr" />
+              <label class="form__label form__check-label" for="vr">VR</label>
+            </div>
+          </div>
+
+          <label class="form__label select__title">Select styled</label>
 
           <div class="form__group form__group-select fadeInLeft">
             <label class="form__label">Ваш город</label>
             <select class="form__input form__select">
-              <option value="kazan" selected>Казань</option>
-              <option value="moscow">Москва</option>
-              <option value="spb">Санкт Петербург</option>
-              <option value="ufa">Уфа</option>
+              <option class="form__option" value="kazan" selected>
+                Казань
+              </option>
+              <option class="form__option" value="moscow">Москва</option>
+              <option class="form__option" value="spb">Санкт Петербург</option>
+              <option class="form__option" alue="ufa">Уфа</option>
             </select>
           </div>
 
           <div class="form__group form__group-select fadeInLeft">
             <label class="form__label">Стаж работы в этой сфере</label>
             <select class="form__input form__select">
-              <option value="one" selected>1</option>
-              <option value="two">2</option>
-              <option value="three">3</option>
-              <option value="four">4</option>
+              <option class="form__option" value="one" selected>1</option>
+              <option class="form__option" value="two">2</option>
+              <option class="form__option" value="three">3</option>
+              <option class="form__option" value="four">4</option>
             </select>
           </div>
 

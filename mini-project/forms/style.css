@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -84,13 +85,6 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.form__group-check {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  margin-bottom: 9px;
-}
 .form__group-date {
   grid-column: 1/3;
 }
@@ -102,9 +96,6 @@ body {
   line-height: 1;
   display: inline-block;
   margin-bottom: 9px;
-}
-.form__check-label {
-  margin-bottom: 0px;
 }
 .form__input {
   min-height: 42px;
@@ -195,6 +186,37 @@ body {
   font-size: 20px;
 }
 
-.arrow__hide {
-  z-index: 0;
+.form__group-check {
+  position: relative;
+}
+.form__check-label {
+  padding-left: 25px;
+}
+.form__check-label::before {
+  content: "✓";
+  color: rgba(255, 255, 255, 0);
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.form__check {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.form__check:checked ~ .form__check-label::before {
+  color: white;
+  background-color: black;
 }
