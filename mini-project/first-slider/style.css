@@ -1,11 +1,13 @@
 html {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 a {
@@ -26,6 +28,85 @@ body {
   font-weight: 500;
   line-height: 1.62;
   font-size: 18px;
-
   height: 2000px;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.slider {
+  overflow: hidden;
+  background-color: black;
+  width: 1000px;
+  position: relative;
+}
+.slider__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+}
+.slider__list__item {
+  height: 350px;
+}
+.slider__img {
+  width: 250px;
+  height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.slider__button {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.slider__button-line:nth-child(1) {
+  content: "";
+  position: absolute;
+  top: 31%;
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  -webkit-transform: rotate(315deg);
+      -ms-transform: rotate(315deg);
+          transform: rotate(315deg);
+}
+.slider__button-line:nth-child(2) {
+  content: "";
+  position: absolute;
+  bottom: 31%;
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.slider__left-button {
+  left: 0;
+}
+.slider__right-button {
+  right: 0;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+      -ms-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
 }

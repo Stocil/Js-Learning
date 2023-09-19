@@ -1,0 +1,115 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.62;
+  font-size: 18px;
+
+  height: 2000px;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.slider {
+  overflow: hidden;
+
+  background-color: black;
+  width: 1000px;
+
+  position: relative;
+
+  &__list {
+    display: flex;
+    gap: 12px;
+
+    &__item {
+      height: 350px;
+    }
+  }
+
+  &__img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+  }
+
+  &__button {
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+
+    position: absolute;
+    top: 50%;
+
+    width: 40px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    transform: translateY(-50%);
+
+    &-line:nth-child(1) {
+      content: "";
+      position: absolute;
+      top: 31%;
+
+      width: 30px;
+      height: 4px;
+
+      background-color: black;
+
+      transform: rotate(315deg);
+    }
+
+    &-line:nth-child(2) {
+      content: "";
+      position: absolute;
+      bottom: 31%;
+
+      width: 30px;
+      height: 4px;
+
+      background-color: black;
+
+      transform: rotate(45deg);
+    }
+  }
+
+  &__left-button {
+    left: 0;
+  }
+
+  &__right-button {
+    right: 0;
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
