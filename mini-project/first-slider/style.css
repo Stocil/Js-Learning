@@ -40,7 +40,7 @@ body {
 .slider {
   overflow: hidden;
   background-color: black;
-  width: 1000px;
+  width: 1036px;
   position: relative;
 }
 .slider__list {
@@ -48,6 +48,10 @@ body {
   display: -ms-flexbox;
   display: flex;
   gap: 12px;
+  -webkit-transition: -webkit-transform 0.7s ease-in-out;
+  transition: -webkit-transform 0.7s ease-in-out;
+  transition: transform 0.7s ease-in-out;
+  transition: transform 0.7s ease-in-out, -webkit-transform 0.7s ease-in-out;
 }
 .slider__list__item {
   height: 350px;
@@ -59,6 +63,7 @@ body {
      object-fit: cover;
 }
 .slider__button {
+  z-index: 1;
   cursor: pointer;
   background-color: transparent;
   padding: 0;
@@ -85,7 +90,7 @@ body {
   top: 31%;
   width: 30px;
   height: 4px;
-  background-color: black;
+  background-color: #dfd6d6;
   -webkit-transform: rotate(315deg);
       -ms-transform: rotate(315deg);
           transform: rotate(315deg);
@@ -96,7 +101,7 @@ body {
   bottom: 31%;
   width: 30px;
   height: 4px;
-  background-color: black;
+  background-color: #dfd6d6;
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
@@ -109,4 +114,19 @@ body {
   -webkit-transform: translateY(-50%) rotate(180deg);
       -ms-transform: translateY(-50%) rotate(180deg);
           transform: translateY(-50%) rotate(180deg);
+}
+
+@media (max-width: 1100px) {
+  .slider {
+    width: 800px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 850px) {
+  .slider {
+    overflow-x: auto;
+  }
+  .slider__button {
+    display: none;
+  }
 }
