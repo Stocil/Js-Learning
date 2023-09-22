@@ -1,0 +1,51 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.62;
+  font-size: 18px;
+  height: 2000px;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.swiper {
+  width: 512px;
+  height: 512px;
+}
+.swiper-button-prev, .swiper-button-next {
+  color: rgb(236, 168, 243);
+}
+.swiper-pagination-bullet {
+  background-color: rgb(236, 168, 243);
+  width: 30px;
+  height: 30px;
+}
