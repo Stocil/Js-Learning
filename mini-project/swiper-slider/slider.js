@@ -1,6 +1,8 @@
 new Swiper(".swiper", {
     // Optional parameters
     loop: true,
+    effect: "cards",
+    grabCursor: true,
     pagination: {
         clickable: true,
         el: ".swiper-pagination",
@@ -16,5 +18,5 @@ new Swiper(".swiper", {
     mousewheel: {
         sensitivity: 1,
     },
-    speed: 1000,
+    // speed: 1000,
 });
